@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guiones de Reels - Iglesia Cali</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header p {
+            color: #2a5298;
+            font-size: 1.2em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #1e3c72;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        
+        .reel-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .reel-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .reel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #1e3c72;
+        }
+        
+        .reel-number {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .pilar-badge {
+            background: #e3f2fd;
+            color: #1e3c72;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .reel-title {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .objetivo {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .objetivo strong {
+            color: #1e3c72;
+        }
+        
+        .section-title {
+            color: #1e3c72;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: "▶";
+            color: #2a5298;
+        }
+        
+        .guion-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        .toma {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+        
+        .toma-numero {
+            color: #1e3c72;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .texto-pantalla {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .tips-section {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .tips-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tips-list {
+            color: #856404;
+            padding-left: 20px;
+        }
+        
+        .duration {
+            display: inline-block;
+            background: #2a5298;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .reel-title {
+                font-size: 1.4em;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 GUIONES DE REELS IMPACTANTES</h1>
+            <p>Contenido Estratégico para Redes Sociales | Iglesia Cali</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Guiones Listos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Pilares de Contenido</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Enfoque Evangelístico</div>
+            </div>
+        </div>
+
+        <!-- REEL 1 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #1</div>
+                <div class="pilar-badge">🌍 MISIONES</div>
+            </div>
+            <h2 class="reel-title">"Están Orando Por Ti"</h2>
+            <span class="duration">⏱️ Duración: 30-40 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Sensibilizar sobre la iglesia perseguida y mostrar que somos una iglesia que ora por el mundo
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">TOMA 1 (0-3 seg) - GANCHO</div>
+                    <p><strong>Visual:</strong> Persona mirando a cámara, primer plano, luz tenue</p>
+                    <p><strong>Audio:</strong> "En este momento, alguien está orando por ti..."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO EN PANTALLA: "En algún lugar del mundo..."
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">TOMA 2 (3-15 seg) - DESARROLLO</div>
+                    <p><strong>Visual:</strong> Imágenes de personas orando en diferentes lugares (iglesia, hogar, celda)</p>
+                    <p><strong>Audio:</strong> "Hay cristianos en países donde es ilegal orar, donde reunirse es arriesgar la vida, donde tener una Biblia puede costarte todo... Y aun así, están orando. Orando por ti, por tu familia, por tu ciudad, por nosotros que tenemos libertad."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "340 millones de cristianos perseguidos" / "Pero nunca han dejado de orar"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">TOMA 3 (15-30 seg) - MENSAJE</div>
+                    <p><strong>Visual:</strong> Regreso a primer plano del host</p>
+                    <p><strong>Audio:</strong> "Si ellos no se rinden orando en medio de la persecución... ¿por qué nosotros dejamos de orar cuando solo tenemos un mal día? Este domingo oramos por ellos. Y queremos que tú estés ahí."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Hebreos 13:3 - Acuérdate de los presos"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">TOMA 4 (30-40 seg) - CIERRE</div>
+                    <p><strong>Audio:</strong> "Únete a una iglesia que ora por el mundo. Te esperamos."</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                📍 LLAMADO A LA ACCIÓN: "Domingos 10AM | Cali | Ven y únete a la oración"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Música emotiva de fondo (instrumental suave)</li>
+                    <li>Usar transiciones suaves entre tomas</li>
+                    <li>Mostrar rostros reales de la congregación orando</li>
+                    <li>Finalizar con logo e info de la iglesia</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 2 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #2</div>
+                <div class="pilar-badge">⛪ VIDA EN LA IGLESIA</div>
+            </div>
+            <h2 class="reel-title">"Un Día Normal Aquí"</h2>
+            <span class="duration">⏱️ Duración: 45-60 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Mostrar la experiencia real de visitar la iglesia, generar familiaridad y eliminar el miedo de los nuevos visitantes
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">INTRO (0-3 seg) - GANCHO</div>
+                    <p><strong>Visual:</strong> Cámara rápida, alguien caminando hacia la entrada de la iglesia</p>
+                    <p><strong>Audio:</strong> "POV: Es tu primera vez visitando nuestra iglesia"</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Así se siente llegar por primera vez 👇"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">SECUENCIA RÁPIDA (3-40 seg) - DESARROLLO</div>
+                    <p><strong>Escena 1:</strong> Alguien del equipo de bienvenida saludando con una sonrisa</p>
+                    <p><strong>Texto:</strong> "Te reciben con una sonrisa genuina"</p>
+                    
+                    <p><strong>Escena 2:</strong> Café y snacks disponibles</p>
+                    <p><strong>Texto:</strong> "Hay café (y es gratis)"</p>
+                    
+                    <p><strong>Escena 3:</strong> Personas adorando con manos levantadas</p>
+                    <p><strong>Texto:</strong> "La alabanza te toca el alma"</p>
+                    
+                    <p><strong>Escena 4:</strong> Pastor predicando con pasión</p>
+                    <p><strong>Texto:</strong> "El mensaje es para ti hoy"</p>
+                    
+                    <p><strong>Escena 5:</strong> Personas abrazándose, riendo, conversando</p>
+                    <p><strong>Texto:</strong> "Encuentras personas reales"</p>
+                    
+                    <p><strong>Escena 6:</strong> Momento de oración en grupo</p>
+                    <p><strong>Texto:</strong> "Aquí puedes ser vulnerable"</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (40-60 seg)</div>
+                    <p><strong>Visual:</strong> Persona mirando a cámara, sonriendo</p>
+                    <p><strong>Audio:</strong> "Y al final del día, entiendes por qué la gente vuelve. No es un edificio. Es familia."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO FINAL: "¿Vienes este domingo?"
+                </div>
+            </div>
+
+            <div class="cta">
+                🏠 "Te esperamos como familia | Domingos 10AM | Cali"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Usar trending audio de TikTok/Reels</li>
+                    <li>Grabar TODO en vertical</li>
+                    <li>Cambios de escena cada 3-5 segundos</li>
+                    <li>Rostros felices y auténticos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 3 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #3</div>
+                <div class="pilar-badge">📖 PREDICAS QUE TRANSFORMAN</div>
+            </div>
+            <h2 class="reel-title">"3 Señales de que Dios Te Está Hablando"</h2>
+            <span class="duration">⏱️ Duración: 35-45 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Enseñanza práctica y breve que haga reflexionar y atraiga personas buscando dirección divina
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Primer plano del pastor/líder mirando fijamente a cámara</p>
+                    <p><strong>Audio:</strong> "Si estás viendo esto, no es casualidad. Dios está tratando de hablarte."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "3 señales que NO puedes ignorar 👇"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">DESARROLLO (3-35 seg)</div>
+                    <p><strong>SEÑAL 1:</strong></p>
+                    <p><strong>Visual:</strong> Transición con número "1"</p>
+                    <p><strong>Audio:</strong> "Número 1: Tienes una inquietud que no te deja dormir. Esa paz que perdiste, esa pregunta que te persigue... Dios usa la inquietud para despertarte."</p>
+                    <p><strong>Texto en pantalla:</strong> "1. La inquietud que no se va"</p>
+
+                    <p><strong>SEÑAL 2:</strong></p>
+                    <p><strong>Visual:</strong> Transición con número "2"</p>
+                    <p><strong>Audio:</strong> "Número 2: Sigues viendo el mismo mensaje en todos lados. Una canción, un versículo, una conversación... Dios está siendo insistente."</p>
+                    <p><strong>Texto en pantalla:</strong> "2. El mensaje se repite"</p>
+
+                    <p><strong>SEÑAL 3:</strong></p>
+                    <p><strong>Visual:</strong> Transición con número "3"</p>
+                    <p><strong>Audio:</strong> "Número 3: Sientes que algo tiene que cambiar YA. Ese sentimiento no es desesperación, es convicción del Espíritu Santo."</p>
+                    <p><strong>Texto en pantalla:</strong> "3. Sabes que algo debe cambiar"</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (35-45 seg)</div>
+                    <p><strong>Audio:</strong> "Si identificaste al menos una, Dios te está llamando. No ignores su voz. Este domingo descubre qué quiere decirte."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Juan 10:27 - Mis ovejas oyen mi voz"
+                </div>
+            </div>
+
+            <div class="cta">
+                🔥 "Ven y escucha lo que Dios tiene para ti | Domingos 10AM"
+            </div>
+        </div>
+
+        <!-- REEL 4 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #4</div>
+                <div class="pilar-badge">💬 TESTIMONIOS</div>
+            </div>
+            <h2 class="reel-title">"Él Salvó Mi Matrimonio"</h2>
+            <span class="duration">⏱️ Duración: 50-60 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Testimonio real de restauración familiar que conecte emocionalmente y muestre el poder transformador de Dios
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-4 seg)</div>
+                    <p><strong>Visual:</strong> Pareja mirando a cámara, tomados de la mano</p>
+                    <p><strong>Audio (esposa):</strong> "Hace 6 meses, firmamos los papeles de divorcio."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Pero Dios tenía otros planes..."
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">HISTORIA (4-45 seg)</div>
+                    <p><strong>Audio (intercalando esposo y esposa):</strong></p>
+                    <p><strong>Esposa:</strong> "15 años de matrimonio se estaban destruyendo. Peleas, infidelidad, dolor. Ya no quedaba nada."</p>
+                    <p><strong>Esposo:</strong> "Un compañero de trabajo me invitó a la iglesia. Yo fui solo por compromiso. Pero ese día el pastor habló de segundas oportunidades."</p>
+                    <p><strong>Esposa:</strong> "Él llegó llorando a casa. Me pidió perdón. Me habló de Jesús. Y aunque yo no creía... algo en mí quiso intentarlo una vez más."</p>
+                    <p><strong>Esposo:</strong> "Empezamos a venir juntos. Dios empezó a sanar lo que nosotros habíamos roto."</p>
+                    <p><strong>Esposa:</strong> "Hoy renovamos nuestros votos. Pero esta vez, con Dios en el centro."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Si Dios restauró nuestro matrimonio, puede restaurar el tuyo"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (45-60 seg)</div>
+                    <p><strong>Audio (juntos):</strong> "Si tu matrimonio está en crisis, ven. Dios hace milagros. Lo vivimos."</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                💕 "Oramos por tu familia | Ven este domingo y encuentra esperanza"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Grabar en ubicación cómoda para la pareja (su hogar o iglesia)</li>
+                    <li>Música emotiva pero esperanzadora</li>
+                    <li>Mostrar fotos antiguas vs. fotos actuales felices</li>
+                    <li>Autenticidad sobre perfección</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 5 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #5</div>
+                <div class="pilar-badge">✝️ EVANGELISMO DIGITAL</div>
+            </div>
+            <h2 class="reel-title">"Este Video No Es Casualidad"</h2>
+            <span class="duration">⏱️ Duración: 30-40 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Alcanzar personas cansadas, heridas y sin esperanza con un mensaje directo que toque el alma
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Pantalla negra, luego aparece texto blanco</p>
+                    <p><strong>Audio:</strong> Silencio inicial, luego voz suave</p>
+                    <p><strong>Texto:</strong> "Detente."</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">DESARROLLO (3-30 seg)</div>
+                    <p><strong>Visual:</strong> Persona hablando directo a cámara, luz natural, ambiente tranquilo</p>
+                    <p><strong>Audio:</strong> "Sé que estás cansado. Sé que has intentado todo y nada funciona. Sé que sonríes afuera pero por dentro estás roto. Sé que a veces sientes que ya no puedes más."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Pero hay alguien que nunca te ha soltado"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">MENSAJE (30-38 seg)</div>
+                    <p><strong>Audio:</strong> "Este video llegó a ti porque Dios quiere que sepas algo: Él no te ha olvidado. Él ve tu dolor. Él conoce tu lucha. Y Él tiene un propósito para tu vida que todavía no has visto."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Jeremías 29:11 - Yo sé los planes que tengo para ti"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (38-40 seg)</div>
+                    <p><strong>Audio:</strong> "Ven este domingo. Permite que Dios te abrace."</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                🕊️ "No estás solo | Te esperamos con los brazos abiertos | Domingos 10AM Cali"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Tono de voz calmado y empático</li>
+                    <li>Sin música o música muy sutil</li>
+                    <li>Ambiente íntimo, no producción excesiva</li>
+                    <li>Este tipo de video genera alto engagement emocional</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 6 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #6</div>
+                <div class="pilar-badge">🔥 CONTENIDO JUVENIL</div>
+            </div>
+            <h2 class="reel-title">"Red Flags de una Relación (Versión Cristiana)"</h2>
+            <span class="duration">⏱️ Duración: 45-55 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Contenido juvenil dinámico y relevante con mensaje cristiano aplicado a relaciones
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Joven hablando directo a cámara, ambiente casual</p>
+                    <p><strong>Audio:</strong> "Red flags en una relación que los cristianos deberíamos reconocer 🚩"</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Esto necesitas saberlo 👇"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">DESARROLLO RÁPIDO (3-45 seg)</div>
+                    <p><strong>RED FLAG 1:</strong></p>
+                    <p><strong>Audio:</strong> "🚩 Te aleja de Dios en lugar de acercarte."</p>
+                    <p><strong>Texto:</strong> "Si te está alejando de la iglesia... corre"</p>
+
+                    <p><strong>RED FLAG 2:</strong></p>
+                    <p><strong>Audio:</strong> "🚩 Justifica el pecado con 'Dios entiende'."</p>
+                    <p><strong>Texto:</strong> "Dios perdona, pero no es excusa para pecar"</p>
+
+                    <p><strong>RED FLAG 3:</strong></p>
+                    <p><strong>Audio:</strong> "🚩 Te presiona a comprometer tus límites."</p>
+                    <p><strong>Texto:</strong> "Tu pureza no es negociable"</p>
+
+                    <p><strong>RED FLAG 4:</strong></p>
+                    <p><strong>Audio:</strong> "🚩 Solo ora contigo cuando hay crisis."</p>
+                    <p><strong>Texto:</strong> "La relación con Dios debe ser constante"</p>
+
+                    <p><strong>RED FLAG 5:</strong></p>
+                    <p><strong>Audio:</strong> "🚩 No respeta tu llamado ni tus sueños."</p>
+                    <p><strong>Texto:</strong> "Tu propósito no se negocia por nadie"</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (45-55 seg)</div>
+                    <p><strong>Audio:</strong> "Dios tiene a alguien que te acercará más a Él, no que te aleje. No te conformes. Hablamos más de esto en el servicio juvenil."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Viernes 7PM - Servicio Juvenil"
+                </div>
+            </div>
+
+            <div class="cta">
+                💙 "Relaciones con propósito | Únete al servicio juvenil | Viernes 7PM"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Usar trending audio juvenil</li>
+                    <li>Transiciones rápidas con efecto de bandera roja 🚩</li>
+                    <li>Tono desenfadado pero con mensaje serio</li>
+                    <li>Puede incluir pequeños sketches dramatizados</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 7 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #7</div>
+                <div class="pilar-badge">🌍 MISIONES</div>
+            </div>
+            <h2 class="reel-title">"Lo Que Cuesta Una Biblia en Corea del Norte"</h2>
+            <span class="duration">⏱️ Duración: 35-45 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Sensibilizar sobre la persecución pero con enfoque esperanzador, invitar a valorar la libertad religiosa y a orar
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Persona sosteniendo una Biblia frente a cámara</p>
+                    <p><strong>Audio:</strong> "¿Sabes cuánto cuesta esta Biblia en Corea del Norte?"</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "La respuesta te va a partir el corazón 💔"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">DESARROLLO (3-25 seg)</div>
+                    <p><strong>Visual:</strong> Persona hablando con seriedad pero esperanza</p>
+                    <p><strong>Audio:</strong> "En Corea del Norte, tener una Biblia puede costarte la vida. Campo de concentración para ti y tres generaciones de tu familia. Pero aun así, hay cristianos que arriesgan todo por tener una. La esconden. La leen en secreto. La memorizan completa por si se la quitan."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTOS INTERCALADOS: 
+                    "50,000+ cristianos en campos de concentración"
+                    "Pero la fe NO se puede encarcelar"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">MENSAJE (25-40 seg)</div>
+                    <p><strong>Audio:</strong> "Nosotros tenemos 5 Biblias en casa y no leemos ninguna. Ellos darían su vida por una página. Este domingo vamos a orar por Corea del Norte y por todos los lugares donde seguir a Jesús es ilegal."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Apocalipsis 2:10 - Sé fiel hasta la muerte"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (40-45 seg)</div>
+                    <p><strong>Audio:</strong> "¿Te unes a orar por ellos? Porque cuando oras por la iglesia perseguida, también te fortaleces tú."</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                🙏 "Oramos por la iglesia perseguida | Únete este domingo | 10AM Cali"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Datos reales de Puertas Abiertas</li>
+                    <li>Tono serio pero no desesperanzado</li>
+                    <li>Finalizar con mensaje de fe y esperanza</li>
+                    <li>Puede incluir mapa visual de países con persecución</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 8 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #8</div>
+                <div class="pilar-badge">✝️ EVANGELISMO DIGITAL</div>
+            </div>
+            <h2 class="reel-title">"Oración Por Tu Familia"</h2>
+            <span class="duration">⏱️ Duración: 30-40 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Video de oración que toque el corazón de personas con familias en crisis
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Persona con manos juntas, fondo sencillo</p>
+                    <p><strong>Audio:</strong> "Si tu familia está pasando por algo difícil... esta oración es para ti."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Toma mi mano y oremos juntos 🙏"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">ORACIÓN (3-35 seg)</div>
+                    <p><strong>Visual:</strong> Mismo plano, ojos cerrados, manos en oración</p>
+                    <p><strong>Audio (con voz calmada y llena de fe):</strong></p>
+                    <p>"Padre celestial, hoy levanto a esta familia ante ti. Tú conoces el dolor, la distancia, las heridas. Tú sabes lo que el enemigo ha tratado de destruir. Pero hoy declaramos que lo que tú unes, nadie lo separa."</p>
+                    <p>"Restaura los corazones quebrantados. Sana las palabras que hirieron. Devuelve el amor que se perdió. Que tu paz reine en ese hogar."</p>
+                    <p>"En el nombre de Jesús, amén."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO FINAL: "Dios está peleando por tu familia"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (35-40 seg)</div>
+                    <p><strong>Audio:</strong> "Si esta oración tocó tu corazón, compártela. Y si necesitas que oremos contigo, ven este domingo."</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                💕 "Oramos por ti y tu familia | Domingos 10AM | Cali"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Música de adoración suave de fondo</li>
+                    <li>Sin distracciones visuales</li>
+                    <li>Voz con autoridad espiritual pero tierna</li>
+                    <li>Este tipo de contenido genera muchos shares</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 9 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #9</div>
+                <div class="pilar-badge">⛪ VIDA EN LA IGLESIA</div>
+            </div>
+            <h2 class="reel-title">"Conoce al Equipo: Detrás de Cámaras"</h2>
+            <span class="duration">⏱️ Duración: 45-60 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Humanizar la iglesia mostrando el equipo de voluntarios, generar conexión y mostrar que todos son bienvenidos a servir
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Alguien del equipo técnico ajustando un micrófono o cámara</p>
+                    <p><strong>Audio:</strong> "La iglesia no funciona sola. Déjame mostrarte quién hace que todo pase."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Los héroes anónimos de cada domingo 👇"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">SECUENCIA DINÁMICA (3-50 seg)</div>
+                    
+                    <p><strong>Escena 1: Equipo de sonido</strong></p>
+                    <p><strong>Audio:</strong> "Ellos llegan 2 horas antes para que escuches cada palabra con claridad."</p>
+                    <p><strong>Texto:</strong> "Equipo técnico 🎧"</p>
+
+                    <p><strong>Escena 2: Equipo de bienvenida</strong></p>
+                    <p><strong>Audio:</strong> "Ella dejó su domingo familiar para recibirte con una sonrisa."</p>
+                    <p><strong>Texto:</strong> "Primera impresión 🤝"</p>
+
+                    <p><strong>Escena 3: Equipo de adoración ensayando</strong></p>
+                    <p><strong>Audio:</strong> "Ensayan toda la semana para que tu corazón se conecte con Dios."</p>
+                    <p><strong>Texto:</strong> "Adoración 🎤"</p>
+
+                    <p><strong>Escena 4: Equipo de niños</strong></p>
+                    <p><strong>Audio:</strong> "Cuidan a tus hijos como si fueran suyos."</p>
+                    <p><strong>Texto:</strong> "Ministerio infantil 👶"</p>
+
+                    <p><strong>Escena 5: Equipo de oración</strong></p>
+                    <p><strong>Audio:</strong> "Oran por ti antes de que llegues."</p>
+                    <p><strong>Texto:</strong> "Intercesión 🙏"</p>
+
+                    <p><strong>Escena 6: Pastor preparando mensaje</strong></p>
+                    <p><strong>Audio:</strong> "Y él busca a Dios toda la semana para traerte una palabra fresca."</p>
+                    <p><strong>Texto:</strong> "Liderazgo pastoral 📖"</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (50-60 seg)</div>
+                    <p><strong>Visual:</strong> Todo el equipo junto sonriendo</p>
+                    <p><strong>Audio:</strong> "Somos voluntarios. Somos imperfectos. Pero amamos servir. Y hay un lugar para ti aquí también."</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "¿Te unes al equipo? 🔥"
+                </div>
+            </div>
+
+            <div class="cta">
+                🙌 "Sirve con nosotros | Domingos 10AM | Haz parte de algo más grande"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Música energética y positiva</li>
+                    <li>Cambios rápidos de escena</li>
+                    <li>Mostrar caras felices y auténticas</li>
+                    <li>Capturar momentos reales, no posados</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REEL 10 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <div class="reel-number">REEL #10</div>
+                <div class="pilar-badge">🔥 CONTENIDO JUVENIL</div>
+            </div>
+            <h2 class="reel-title">"Cosas que NO Sabías de la Biblia"</h2>
+            <span class="duration">⏱️ Duración: 40-50 segundos</span>
+            
+            <div class="objetivo">
+                <strong>🎯 Objetivo:</strong> Contenido educativo dinámico que genere curiosidad y muestre que la Biblia es relevante y fascinante
+            </div>
+
+            <div class="section-title">📝 GUION</div>
+            <div class="guion-content">
+                <div class="toma">
+                    <div class="toma-numero">GANCHO (0-3 seg)</div>
+                    <p><strong>Visual:</strong> Joven con Biblia en mano, expresión sorprendida</p>
+                    <p><strong>Audio:</strong> "Cosas de la Biblia que te van a volar la mente 🤯"</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "No way... 👀"
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">DATOS RÁPIDOS (3-45 seg)</div>
+                    
+                    <p><strong>DATO 1:</strong></p>
+                    <p><strong>Audio:</strong> "La Biblia menciona más de 40 autores diferentes, pero TODOS coinciden en el mensaje. Escrito en 3 continentes, 3 idiomas, en 1,500 años. Y no se contradice."</p>
+                    <p><strong>Texto:</strong> "40 autores, 1 mensaje 📜"</p>
+
+                    <p><strong>DATO 2:</strong></p>
+                    <p><strong>Audio:</strong> "El libro más robado del mundo es... la Biblia. Y el más vendido también. Más de 5 mil millones de copias."</p>
+                    <p><strong>Texto:</strong> "#1 en ventas por siglos 📚"</p>
+
+                    <p><strong>DATO 3:</strong></p>
+                    <p><strong>Audio:</strong> "La palabra 'Biblia' ni siquiera aparece EN la Biblia. Es una palabra griega que significa 'los libros'."</p>
+                    <p><strong>Texto:</strong> "Plot twist 🤔"</p>
+
+                    <p><strong>DATO 4:</strong></p>
+                    <p><strong>Audio:</strong> "El versículo más corto de la Biblia tiene solo 2 palabras: 'Jesús lloró.' Juan 11:35. Pero dice TODO sobre su humanidad."</p>
+                    <p><strong>Texto:</strong> "Jesús lloró 😢"</p>
+
+                    <p><strong>DATO 5:</strong></p>
+                    <p><strong>Audio:</strong> "Y hay más de 2,000 profecías en la Biblia. Más del 80% ya se cumplieron AL PIE DE LA LETRA."</p>
+                    <p><strong>Texto:</strong> "2000+ profecías cumplidas ✓"</p>
+                </div>
+
+                <div class="toma">
+                    <div class="toma-numero">CIERRE (45-50 seg)</div>
+                    <p><strong>Audio:</strong> "La Biblia no es un libro aburrido. Es la carta de amor de Dios para ti. ¿La has leído?"</p>
+                </div>
+
+                <div class="texto-pantalla">
+                    📱 TEXTO: "Ven y descubre más | Domingos 10AM"
+                </div>
+            </div>
+
+            <div class="cta">
+                📖 "Estudiamos la Biblia juntos | Únete a grupos de estudio | Info en bio"
+            </div>
+
+            <div class="tips-section">
+                <div class="tips-title">💡 TIPS DE PRODUCCIÓN:</div>
+                <ul class="tips-list">
+                    <li>Ritmo muy rápido, estilo TikTok</li>
+                    <li>Efectos visuales dinámicos</li>
+                    <li>Audio trending o beat energético</li>
+                    <li>Expresiones faciales exageradas para engagement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECCIÓN FINAL: EXTRAS -->
+        <div class="reel-card" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+            <h2 style="color: white; text-align: center; font-size: 2em; margin-bottom: 30px;">🎁 BONUS: ESTRATEGIA DE PUBLICACIÓN</h2>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: white; margin-bottom: 15px;">📅 CALENDARIO SEMANAL SUGERIDO:</h3>
+                <ul style="line-height: 2; font-size: 1.1em;">
+                    <li><strong>Lunes:</strong> Evangelismo Digital / Mensaje Motivacional</li>
+                    <li><strong>Martes:</strong> Predicas que Transforman / Enseñanza Bíblica</li>
+                    <li><strong>Miércoles:</strong> Contenido Juvenil / Memes con Mensaje</li>
+                    <li><strong>Jueves:</strong> Vida en la Iglesia / Detrás de Cámaras</li>
+                    <li><strong>Viernes:</strong> Testimonio Real / Historia de Transformación</li>
+                    <li><strong>Sábado:</strong> Recordatorio del Servicio / Invitación</li>
+                    <li><strong>Domingo:</strong> Misiones / Oración por el Mundo</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: white; margin-bottom: 15px;">⚡ MEJORES HORARIOS PARA PUBLICAR:</h3>
+                <ul style="line-height: 2; font-size: 1.1em;">
+                    <li><strong>Instagram Reels:</strong> 7:00 AM, 1:00 PM, 7:00 PM</li>
+                    <li><strong>TikTok:</strong> 8:00 AM, 12:00 PM, 9:00 PM</li>
+                    <li><strong>Facebook:</strong> 9:00 AM, 2:00 PM, 6:00 PM</li>
+                    <li><strong>YouTube Shorts:</strong> 10:00 AM, 3:00 PM, 8:00 PM</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: white; margin-bottom: 15px;">🎯 HASHTAGS ESTRATÉGICOS:</h3>
+                <p style="line-height: 1.8; font-size: 1.05em;">
+                    #IglesiaCali #DiosTeSalva #CristianosEnCali #FeEnAcción #IglesiaJoven 
+                    #TestimonioReal #MilagrosReales #DiosEsReal #EncuentraEsperanza 
+                    #TransformaciónDivina #CaliCristiana #ComunidadDeFe #IglesiaViva 
+                    #JesúsTeLlama #VenALaIglesia
+                </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: white; margin-bottom: 15px;">💡 TIPS FINALES PARA MÁXIMO IMPACTO:</h3>
+                <ul style="line-height: 2; font-size: 1.05em;">
+                    <li>✅ Responde TODOS los comentarios en las primeras 2 horas</li>
+                    <li>✅ Usa subtítulos siempre (85% ve videos sin sonido)</li>
+                    <li>✅ Hook en los primeros 3 segundos es CRÍTICO</li>
+                    <li>✅ Incluye CTA (llamado a la acción) al final SIEMPRE</li>
+                    <li>✅ Publica consistentemente (mínimo 5 veces por semana)</li>
+                    <li>✅ Reutiliza contenido en todas las plataformas</li>
+                    <li>✅ Analiza métricas: guarda lo que funciona, ajusta lo que no</li>
+                    <li>✅ Humaniza el contenido: rostros reales > stock footage</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <h2 style="color: #1e3c72; font-size: 2em; margin-bottom: 20px;">🙌 ¡LISTOS PARA IMPACTAR VIDAS!</h2>
+            <p style="color: #666; font-size: 1.2em; line-height: 1.8;">
+                Estos 10 guiones son solo el comienzo. Recuerda: <strong style="color: #2a5298;">el contenido sin oración es solo ruido, pero el contenido ungido transforma ciudades</strong>.
+            </p>
+            <p style="color: #666; font-size: 1.1em; margin-top: 20px;">
+                📩 ¿Necesitas más guiones, ideas específicas o ajustes? <strong style="color: #1e3c72;">¡Solo pídemelo!</strong>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
+                

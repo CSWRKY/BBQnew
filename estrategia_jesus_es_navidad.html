@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Lanzamiento - Jesús es Navidad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0cc0df 0%, #cb6ce6 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #cb6ce6;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .song-title {
+            color: #0cc0df;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .header .artist {
+            color: #ffbd59;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .day-header {
+            background:#ffbd59;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-header h2 {
+            color: white;
+            font-size: 1.8em;
+        }
+
+        .day-header .toggle {
+            color: white;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .day-header.active .toggle {
+            transform: rotate(180deg);
+        }
+
+        .day-content {
+            display: block !important;
+            animation: slideDown 0.3s ease;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-type {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .educativo { background: #ffbd59; color: white; }
+        .informativo { background: #82b4d1; color: white; }
+        .entretenimiento { background: #cb6ce6; color: white; }
+        .backstage { background: #0cc0df; color: white; }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #cb6ce6;
+        }
+
+        .section h3 {
+            color: #cb6ce6;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .section h4 {
+            color: #0cc0df;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .guion-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ffbd59;
+        }
+
+        .guion-text {
+            color: #333;
+            font-size: 1.05em;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .tech-specs {
+            background: linear-gradient(135deg, #82b4d1, #0cc0df);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-specs h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .tech-specs ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .tech-specs li {
+            margin: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tech-specs li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .cta-box {
+            background: #cb6ce6;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .note {
+            background: ##cb6ce6;
+            border-left: 4px solid #ffbd59;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #cb6ce6;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .header .song-title {
+                font-size: 1.3em;
+            }
+
+            .day-header h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎄 ESTRATEGIA DE LANZAMIENTO 🎄</h1>
+            <div class="song-title">"Jesús es Navidad"</div>
+            <div class="artist">SANDRA TARAZONA</div>
+            <p style="margin-top: 20px; color: #cb6ce6;">Estrategia Post-Lanzamiento | 6 Días de Contenido Viral</p>
+        </div>
+
+        <!-- DÍA 1 -->
+        <div class="day-card">
+            <div class="day-header">
+                <h2>📅 DÍA 1 - POST-LANZAMIENTO</h2>
+               
+            </div>
+            <div class="day-content">
+                <span class="content-type backstage">BACKSTAGE</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "El momento exacto en que escuché la canción terminada por primera vez 🎧✨"</p>
+                    <p><strong>Duración:</strong> 30-45 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-3):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Apareces en cámara con auriculares puestos, ojos cerrados, expresión de emoción contenida]</strong><br><br>
+                            "Esto es lo que sentí cuando escuché 'Jesús es Navidad' por primera vez..."<br><br>
+                            <strong>[Pausa de 1 segundo - mantienes los ojos cerrados]</strong>
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 4-35):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Quitas lentamente los auriculares, abres los ojos con lágrimas visibles]</strong><br><br>
+                            "Trabajé meses en esta canción... pero cuando finalmente escuché el master terminado..."<br><br>
+                            <strong>[Colocas tu mano en el pecho]</strong><br><br>
+                            "...sentí como si Dios mismo me recordara por qué hago música."<br><br>
+                            <strong>[Sonríes mientras se te quiebra un poco la voz]</strong><br><br>
+                            "Porque Navidad no es solo una fecha... es Jesús. Y esta canción es mi ofrenda para recordarle al mundo quién es el verdadero regalo."<br><br>
+                            <strong>[Muestras la pantalla de tu teléfono con el título de la canción]</strong><br><br>
+                            "Y ahora quiero que tú también la escuches."
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 36-45):</h4>
+                    <div class="cta-box">
+                        "'Jesús es Navidad' ya está disponible. Link en mi bio 🎄✨ Cuéntame en los comentarios qué sientes al escucharla."
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN (Para que lo entienda un niño de 10 años)</h3>
+                    
+                    <h4>Paso 1 - Preparación:</h4>
+                    <ul>
+                        <li><strong>Dónde grabar:</strong> Busca un lugar con mucha luz natural. Puede ser cerca de una ventana en tu casa o en un espacio tranquilo.</li>
+                        <li><strong>Qué ponerte:</strong> Ropa cómoda y de colores suaves (blanco, beige, o tonos pasteles). Nada muy brillante que distraiga.</li>
+                        <li><strong>Qué necesitas:</strong> Tu celular, unos auriculares visibles, y un soporte o trípode para que el celular no se mueva.</li>
+                    </ul>
+
+                    <h4>Paso 2 - Configuración de la cámara:</h4>
+                    <ul>
+                        <li>Coloca el celular en <strong>posición vertical</strong> (como cuando ves TikTok).</li>
+                        <li>La cámara debe estar a la <strong>altura de tus ojos</strong>, ni muy arriba ni muy abajo.</li>
+                        <li>Tu cara debe estar en el <strong>centro del video</strong>.</li>
+                        <li>Asegúrate de que se vea desde tu cabeza hasta tus hombros.</li>
+                    </ul>
+
+                    <h4>Paso 3 - Cómo actuar:</h4>
+                    <ul>
+                        <li><strong>Primeros 3 segundos:</strong> Ponte los auriculares, cierra los ojos y haz una cara como si estuvieras sintiendo algo muy hermoso. No hables todavía.</li>
+                        <li><strong>Siguiente parte:</strong> Lentamente quita los auriculares (hazlo despacio para que se vea bien). Abre los ojos y deja que se vea si tienes lágrimas o emoción real.</li>
+                        <li><strong>Cuando hables:</strong> Habla con tu corazón. No grites, pero tampoco hables muy bajito. Imagina que le estás contando algo importante a tu mejor amigo.</li>
+                        <li><strong>Tus manos:</strong> Cuando digas "sentí como si Dios mismo...", pon tu mano en tu pecho (en tu corazón).</li>
+                        <li><strong>Final:</strong> Muestra tu teléfono con la canción en Spotify o YouTube, asegúrate de que se vea el título.</li>
+                    </ul>
+
+                    <h4>Paso 4 - Expresiones faciales:</h4>
+                    <ul>
+                        <li>Al inicio: Cara tranquila, pacífica, emocionada por dentro.</li>
+                        <li>Al abrir los ojos: Sorpresa mezclada con alegría.</li>
+                        <li>Al hablar: Deja que tu cara muestre lo que sientes de verdad. Si quieres llorar, llora. Si quieres sonreír, sonríe.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución:</strong> 1080x1920px (Full HD vertical)</li>
+                        <li><strong>Frame rate:</strong> 30fps o 60fps</li>
+                        <li><strong>Audio de fondo:</strong> Comienza con un snippet instrumental suave de "Jesús es Navidad" (primeros 5 segundos muy bajito), luego sube el volumen cuando muestras el teléfono</li>
+                        <li><strong>Transiciones:</strong> Ninguna. Cortes simples y directos para mantener la autenticidad</li>
+                        <li><strong>Subtítulos:</strong> Coloca subtítulos en blanco con borde negro en la parte inferior. Usa fuente bold y legible</li>
+                        <li><strong>Color grading:</strong> Tonos cálidos y suaves. Aumenta ligeramente el brillo y la saturación para que se vea acogedor</li>
+                        <li><strong>Efectos visuales:</strong> 
+                            <ul>
+                                <li>Cuando muestras el teléfono: zoom suave de 1.5 segundos hacia la pantalla</li>
+                                <li>Al final: overlay sutil de luces de Navidad (brillitos dorados)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Texto en pantalla:</strong> Al final, aparece texto: "JESÚS ES NAVIDAD - YA DISPONIBLE 🎄" en fuente grande y dorada</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota importante para Sandra:</strong> Este video debe sentirse MUY real y auténtico. No tengas miedo de mostrar emoción verdadera. La gente conecta con lo genuino. Si necesitas varios intentos para que salga natural, tómatelos. El objetivo es que quien lo vea sienta que está viendo un momento íntimo y real de tu proceso creativo.
+                </div>
+            </div>
+        </div>
+
+        <!-- DÍA 2 -->
+        <div class="day-card">
+            <div class="day-header">
+                <h2>📅 DÍA 2 - POST-LANZAMIENTO</h2>
+                
+            </div>
+            <div class="day-content">
+                <span class="content-type educativo">EDUCATIVO</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "3 cosas que NO sabías sobre el nacimiento de Jesús 👶🏼✨ (y están en la canción)"</p>
+                    <p><strong>Duración:</strong> 50-60 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok educativo dinámico</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-3):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Apareces con cara de asombro, levantando 3 dedos]</strong><br><br>
+                            "Espera... ¿En serio NO sabías estas 3 cosas sobre el nacimiento de Jesús?"<br><br>
+                            <strong>[Acercas los dedos a la cámara con expresión juguetona]</strong>
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 4-50):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Cambio de escena - ahora estás sentada o parada en un lugar cómodo]</strong><br><br>
+                            <strong>[Levantas 1 dedo]</strong><br><br>
+                            "Número 1: Jesús NO nació el 25 de diciembre. De hecho, la Biblia nunca menciona la fecha exacta. Pero sí menciona que habían pastores en el campo cuidando sus ovejas..."<br><br>
+                            <strong>[Sonríes]</strong><br><br>
+                            "...y en diciembre hacía demasiado frío en Belén para eso. Lo más probable es que naciera entre septiembre y octubre."<br><br>
+                            <strong>[Pausa de 1 segundo - dejas que eso caiga]</strong><br><br>
+                            
+                            <strong>[Levantas 2 dedos]</strong><br><br>
+                            "Número 2: Los reyes magos NO llegaron cuando Jesús era un bebé recién nacido. La Biblia dice que cuando ellos llegaron, Jesús ya era un 'niño' en una 'casa'..."<br><br>
+                            <strong>[Haces énfasis con las manos]</strong><br><br>
+                            "...no un bebé en un pesebre. Probablemente tenía entre 1 y 2 años."<br><br>
+                            <strong>[Pausa de 1 segundo]</strong><br><br>
+                            
+                            <strong>[Levantas 3 dedos]</strong><br><br>
+                            "Y número 3: Cuando los ángeles anunciaron su nacimiento, no le dijeron a todo el mundo... solo a los pastores."<br><br>
+                            <strong>[Te inclinas un poco hacia la cámara, como contando un secreto]</strong><br><br>
+                            "¿Y sabes por qué eso es importante? Porque en esa época, los pastores eran considerados de lo más bajo en la sociedad. Y Dios les dio a ELLOS el privilegio de ser los primeros en adorar al Rey de Reyes."<br><br>
+                            <strong>[Sonríes con ternura]</strong><br><br>
+                            "Porque Jesús vino para todos. Sin importar quién seas."
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 51-60):</h4>
+                    <div class="cta-box">
+                        "Y todo esto está reflejado en la letra de 'Jesús es Navidad'. Escúchala y descubre más detalles hermosos. Link en bio 🎄"
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN</h3>
+                    
+                    <h4>Paso 1 - Preparación:</h4>
+                    <ul>
+                        <li><strong>Dónde grabar:</strong> Un lugar bien iluminado y neutral. Puede ser frente a una pared de color claro o en un espacio de tu casa que se vea ordenado.</li>
+                        <li><strong>Qué ponerte:</strong> Algo casual pero presentable. Puede ser un suéter navideño o colores cálidos (rojo, beige, blanco).</li>
+                        <li><strong>Props necesarios:</strong> NO necesitas nada más que tus manos para contar con los dedos.</li>
+                    </ul>
+
+                    <h4>Paso 2 - Configuración de cámara:</h4>
+                    <ul>
+                        <li>Video vertical, celular a la altura de tus ojos.</li>
+                        <li>Encuadre: Tu rostro y torso superior deben estar visibles.</li>
+                        <li>Asegúrate de que haya espacio en la parte superior del video para agregar texto/números en la edición.</li>
+                    </ul>
+
+                    <h4>Paso 3 - Cómo grabar cada parte:</h4>
+                    <ul>
+                        <li><strong>Hook inicial:</strong> Grábalo primero. Haz varias tomas hasta que tu expresión de asombro se vea natural y juguetona (no forzada). Practica levantar los 3 dedos de manera clara.</li>
+                        <li><strong>Punto 1, 2 y 3:</strong> Puedes grabarlos en tomas separadas o de corrido. Si te equivocas, no hay problema: solo haz una pausa, respira, y vuelve a empezar desde donde te quedaste.</li>
+                        <li><strong>Uso de las manos:</strong> Cada vez que menciones un número, levanta los dedos correspondientes de manera CLARA y mantén la mano por 2-3 segundos para que se vea bien.</li>
+                        <li><strong>Tono de voz:</strong> Habla con energía, pero no grites. Quieres sonar como una maestra amigable que está compartiendo algo súper interesante. Varía tu tono para mantener la atención.</li>
+                    </ul>
+
+                    <h4>Paso 4 - Expresiones y energía:</h4>
+                    <ul>
+                        <li><strong>Expresión facial:</strong> Mantén una sonrisa ligera. Cuando compartas algo sorprendente (como "los reyes magos NO llegaron de bebé"), abre un poco los ojos como diciendo "¿puedes creerlo?".</li>
+                        <li><strong>Lenguaje corporal:</strong> Muévete naturalmente. No estés rígida. Inclínate hacia adelante cuando quieras enfatizar algo importante.</li>
+                        <li><strong>Velocidad al hablar:</strong> Habla a velocidad normal, pero haz pausas estratégicas después de revelar cada dato. Esto da tiempo para que el espectador procese la información.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución:</strong> 1080x1920px</li>
+                        <li><strong>Frame rate:</strong> 30fps</li>
+                        <li><strong>Audio de fondo:</strong> Música de fondo suave (lofi beats o música instrumental navideña suave). El volumen debe estar bajo para que tu voz sea clara</li>
+                        <li><strong>Transiciones:</strong> Cortes rápidos entre cada punto. Nada elaborado, solo cambios de ángulo si grabaste desde diferentes perspectivas</li>
+                        <li><strong>Subtítulos:</strong> IMPORTANTE - Pon subtítulos en cada frase. Usa fuente clara, blanca con borde negro</li>
+                        <li><strong>Elementos visuales dinámicos:</strong>
+                            <ul>
+                                <li>Cuando digas "Número 1", aparece un gran "1️⃣" animado en pantalla</li>
+                                <li>Cuando digas "Número 2", aparece un "2️⃣"</li>
+                                <li>Cuando digas "Número 3", aparece un "3️⃣"</li>
+                                <li>Cada número debe tener un efecto de "pop" al aparecer</li>
+                            </ul>
+                        </li>
+                        <li><strong>B-roll (imágenes de apoyo):</strong>
+                            <ul>
+                                <li>Para el punto 1: Imagen o ilustración de pastores en el campo</li>
+                                <li>Para el punto 2: Ilustración de los reyes magos</li>
+                                <li>Para el punto 3: Imagen del pesebre con los pastores adorando</li>
+                                <li>Estas imágenes deben aparecer en pantalla dividida o como overlay transparente mientras hablas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Color grading:</strong> Colores cálidos y vibrantes. Dale un toque navideño pero no exagerado</li>
+                        <li><strong>Efectos de sonido:</strong> Un "ding" o sonido de notificación cada vez que aparezca un número nuevo</li>
+                        <li><strong>Cierre del video:</strong> Fade a negro por 0.5 segundos, luego aparece la portada de la canción "Jesús es Navidad" con texto "ESCUCHA AHORA" parpadeando</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota para Sandra:</strong> Este formato educativo es PERFECTO para alguien que prefiere contenido con guion y mensaje claro. No necesitas ser extrovertida para hacer esto - solo necesitas compartir información interesante de manera amigable. Practica el guion varias veces antes de grabar para que fluya natural. Recuerda: estás enseñando algo valioso, y eso siempre conecta con la audiencia.
+                </div>
+            </div>
+        </div>
+
+        <!-- DÍA 3 -->
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <h2>📅 DÍA 3 - POST-LANZAMIENTO</h2>
+               
+            </div>
+            <div class="day-content">
+                <span class="content-type entretenimiento">ENTRETENIMIENTO</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "POV: Eres un ángel anunciando el nacimiento de Jesús 👼🏼✨ (versión 2024)"</p>
+                    <p><strong>Duración:</strong> 20-30 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok de trend viral</p>
+                    <p><strong>Nota:</strong> Este es un formato de "Point of View" (POV) que está súper de moda en TikTok. Es divertido y creativo, perfecto para que la canción se viralice.</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-3):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Apareces vestida de blanco o con algo que simule alas de ángel (puede ser algo simple como una sábana blanca o ropa blanca brillante)]</strong><br><br>
+                            <strong>[Texto en pantalla: "POV: Eres un ángel en el año 1 d.C. y tienes que anunciar la noticia más importante de la historia"]</strong><br><br>
+                            <strong>[Tu cara muestra nerviosismo cómico]</strong>
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 4-25):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Actúas nerviosa, como preparándote para algo grande]</strong><br><br>
+                            <strong>[Miras hacia arriba como recibiendo instrucciones de Dios]</strong><br><br>
+                            <strong>[Asientes con determinación]</strong><br><br>
+                            <strong>[Respiras profundo]</strong><br><br>
+                            <strong>[De repente, tu expresión cambia a una de alegría total y paz]</strong><br><br>
+                            
+                            <strong>[Abres los brazos de manera dramática y teatral]</strong><br><br>
+                            
+                            <strong>[Empiezas a "cantar" (lip sync) o decir con voz angelical:]</strong><br><br>
+                            "¡No teman! Les traigo buenas noticias de gran gozo..."<br><br>
+                            <strong>[Señalas hacia abajo (hacia Belén)]</strong><br><br>
+                            "...¡porque hoy les ha nacido un Salvador!"<br><br>
+                            
+                            <strong>[Haces un gesto de "boom" con las manos, como si hubiera fuegos artificiales]</strong><br><br>
+                            
+                            <strong>[Luego rompes el personaje y sonríes a la cámara de manera juguetona]</strong><br><br>
+                            
+                            <strong>[Texto en pantalla: "Así se sintieron los ángeles cuando cantaron 'Jesús es Navidad' 🎶"]</strong>
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 26-30):</h4>
+                    <div class="cta-box">
+                      <p><strong style="color: #ffffff;">[Guiñas el ojo a la cámara]</strong></p><br>
+<p><strong style="color: #ffffff;">[Texto en pantalla: "Escucha la canción completa ⬆️ Link en bio 🎄"]</strong></p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN</h3>
+                    
+                    <h4>Paso 1 - Preparación del "vestuario de ángel":</h4>
+                    <ul>
+                        <li><strong>Qué usar:</strong> No necesitas un disfraz completo. Puedes usar:
+                            <ul>
+                                <li>Una camiseta o blusa blanca</li>
+                                <li>Una sábana blanca envuelta como túnica</li>
+                                <li>Si tienes, unas alas de ángel de juguete o decorativas</li>
+                                <li>Algo brillante o dorado (opcional): un collar, diadema o accesorio</li>
+                            </ul>
+                        </li>
+                        <li><strong>Maquillaje (opcional):</strong> Si quieres, puedes ponerte un poco de glitter dorado o plateado en tus pómulos para darle un toque "celestial".</li>
+                    </ul>
+
+                    <h4>Paso 2 - Dónde y cómo grabar:</h4>
+                    <ul>
+                        <li><strong>Lugar:</strong> Un fondo simple y claro. Puede ser una pared blanca, beige o celeste. Si tienes luces navideñas, ponlas en el fondo (pero fuera de foco) para dar ambiente.</li>
+                        <li><strong>Iluminación:</strong> Mucha luz. Si puedes, usa una luz frontal para que tu cara esté brillante y se vea el "efecto angelical".</li>
+                        <li><strong>Posición de la cámara:</strong> Video vertical, cámara a la altura de tus ojos. Debe verse tu rostro y parte de tu torso/brazos.</li>
+                    </ul>
+
+                    <h4>Paso 3 - Cómo actuar (paso a paso):</h4>
+                    <ul>
+                        <li><strong>Escena 1 - Nerviosismo (primeros 5 segundos):</strong>
+                            <ul>
+                                <li>Haz una cara de "uy, esto es importante"</li>
+                                <li>Muerde tu labio inferior como si estuvieras nerviosa</li>
+                                <li>Mira hacia arriba (hacia el "cielo") como si Dios te estuviera hablando</li>
+                                <li>Asienta despacio, como diciendo "ok, ok, entendido"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Escena 2 - Preparación (segundos 6-10):</strong>
+                            <ul>
+                                <li>Respira profundo (exagera un poco para que se vea en cámara)</li>
+                                <li>Enderézate, ponte seria por un segundo</li>
+                                <li>Cierra los ojos brevemente</li>
+                            </ul>
+                        </li>
+                        <li><strong>Escena 3 - El anuncio angelical (segundos 11-23):</strong>
+                            <ul>
+                                <li>Abre los ojos con alegría repentina</li>
+                                <li>Extiende tus brazos hacia los lados como si fueras a volar</li>
+                                <li>Si vas a decir el mensaje en voz alta, hazlo con VOZ FUERTE y ALEGRE (pero no grites)</li>
+                                <li>Si prefieres hacer lip sync, usa una voz grabada con eco angelical</li>
+                                <li>Señala hacia abajo cuando digas "les ha nacido un Salvador"</li>
+                                <li>Haz un gesto de explosión con tus manos (sepáralas rápido hacia los lados con dedos extendidos)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Escena 4 - Romper el personaje (segundos 24-30):</strong>
+                            <ul>
+                                <li>Relaja tu postura de repente</li>
+                                <li>Sonríe de manera normal y amigable (ya no eres el ángel, eres tú de nuevo)</li>
+                                <li>Guiña un ojo a la cámara de manera juguetona</li>
+                                <li>Puedes hacer un pequeño saludo con la mano</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 4 - Consejos importantes:</h4>
+                    <ul>
+                        <li><strong>Exagera las expresiones:</strong> En videos cortos, las expresiones sutiles no se notan. Sé un poco más dramática de lo que serías en la vida real.</li>
+                        <li><strong>No te tomes demasiado en serio:</strong> Este video debe ser DIVERTIDO. La gracia está en que es un poco absurdo y cómico.</li>
+                        <li><strong>Practica varias veces:</strong> Graba el video completo varias veces hasta que una versión te parezca fluida y natural.</li>
+                        <li><strong>Si te da pena:</strong> Recuerda que nadie más está viendo mientras grabas. Date permiso de ser juguetona y creativa.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución:</strong> 1080x1920px</li>
+                        <li><strong>Frame rate:</strong> 30fps o 60fps (60fps es mejor para este tipo de contenido dinámico)</li>
+                        <li><strong>Audio:</strong>
+                            <ul>
+                                <li>Opción 1: Usa un fragmento del coro de "Jesús es Navidad" como audio de fondo</li>
+                                <li>Opción 2: Usa un trending sound de TikTok/Reels que sea compatible con el mensaje</li>
+                                <li>El audio debe empezar desde el segundo 1, no antes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Efectos visuales:</strong>
+                            <ul>
+                                <li>Cuando "anuncias", agrega partículas doradas o estrellas brillantes cayendo en el fondo (overlay)</li>
+                                <li>Cuando hagas el gesto de "boom", agrega un flash de luz blanca por 0.3 segundos</li>
+                                <li>Al final, cuando guiñas el ojo, agrega un "sparkle" (brillo) en el ojo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Texto en pantalla:</strong>
+                            <ul>
+                                <li>Al inicio: "POV: Eres un ángel en el año 1 d.C." (fuente blanca, borde negro, parte superior del video)</li>
+                                <li>Al final: "Así se sintieron los ángeles cantando 'Jesús es Navidad' 🎶" (fuente dorada)</li>
+                                <li>CTA: "Link en bio 🎄" (esquina inferior derecha)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transiciones:</strong> Usa un "whoosh" rápido cuando cambies de la sección de nerviosismo a la sección del anuncio</li>
+                        <li><strong>Color grading:</strong> Aumenta el brillo y los tonos cálidos. Agrega un leve "glow" alrededor de tu silueta para el efecto angelical</li>
+                        <li><strong>Velocidad:</strong> El video debe ser dinámico. Si algunas secciones se sienten lentas, acelera ligeramente (1.2x) esas partes</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota para Sandra:</strong> ¡Este es tu momento de ser juguetona y creativa! Como eres introvertida, puede que al principio sientas que esto es "demasiado". Pero recuerda: el formato POV es como actuar, no estás siendo tú misma directamente. Estás interpretando un personaje. Eso puede hacerlo más fácil. Además, videos como este son los que se viralizan porque son diferentes y divertidos. ¡Dale una oportunidad! Graba en privado, sin presión, y verás que puede ser súper liberador.
+                </div>
+            </div>
+        </div>
+
+        <!-- DÍA 4 -->
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <h2>📅 DÍA 4 - POST-LANZAMIENTO</h2>
+                
+            </div>
+            <div class="day-content">
+                <span class="content-type informativo">INFORMATIVO</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "Por qué escribí esta canción: La verdadera razón detrás de 'Jesús es Navidad' 💭✨"</p>
+                    <p><strong>Duración:</strong> 45-60 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok testimonial directo a cámara</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-4):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Estás sentada en un lugar cómodo, mirando directamente a la cámara con expresión seria pero amable]</strong><br><br>
+                            "Me han preguntado mucho por qué decidí escribir 'Jesús es Navidad'..."<br><br>
+                            <strong>[Pausa de 1 segundo, baja la mirada como si estuvieras recordando]</strong><br><br>
+                            "...y creo que es momento de contarles la verdad."
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 5-52):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Levantas la mirada de nuevo a la cámara]</strong><br><br>
+                            "Durante años, vi cómo la Navidad se convirtió en algo... diferente."<br><br>
+                            <strong>[Mueves las manos suavemente mientras hablas]</strong><br><br>
+                            "Luces, regalos, cenas, reuniones... todo hermoso, no me malentiendas. Pero algo se estaba perdiendo."<br><br>
+                            
+                            <strong>[Te inclinas ligeramente hacia adelante]</strong><br><br>
+                            "Jesús. El centro de todo. El verdadero regalo."<br><br>
+                            
+                            <strong>[Pausa de 2 segundos, dejas que eso resuene]</strong><br><br>
+                            
+                            "Un día estaba leyendo Lucas 2, el relato del nacimiento de Jesús, y algo hizo 'click' en mi corazón."<br><br>
+                            
+                            <strong>[Sonríes con ternura]</strong><br><br>
+                            "Dios envió a su hijo... al Mesías prometido... a un pesebre. No a un palacio. No rodeado de reyes. Sino en el lugar más humilde posible."<br><br>
+                            
+                            <strong>[Tu voz se suaviza, más íntima]</strong><br><br>
+                            "Y lo hizo porque nos ama. Porque quería salvarnos. Porque ÉL es el verdadero significado de la Navidad."<br><br>
+                            
+                            <strong>[Pausa, miras fijamente a la cámara]</strong><br><br>
+                            "Entonces sentí que Dios me decía: 'Escribe esto. Recuérdale al mundo quién es Jesús. Recuérdales que Navidad no es una fecha... es una persona'."<br><br>
+                            
+                            <strong>[Sonríes con lágrimas en los ojos]</strong><br><br>
+                            "Y así nació 'Jesús es Navidad'."
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 53-60):</h4>
+                    <div class="cta-box">
+                        <strong>[Colocas tu mano en tu pecho]</strong><br>
+                        "Esta canción es mi ofrenda para ti. Espero que cuando la escuches, recuerdes por qué celebramos. Porque Jesús es Navidad. Link en mi bio 🎄"
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN</h3>
+                    
+                    <h4>Paso 1 - Preparación del espacio:</h4>
+                    <ul>
+                        <li><strong>Dónde grabar:</strong> Un lugar íntimo y acogedor. Puede ser:
+                            <ul>
+                                <li>Sentada en un sofá o silla cómoda</li>
+                                <li>En tu habitación o estudio de grabación</li>
+                                <li>En un rincón con buena iluminación natural</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ambiente:</strong> Este video debe sentirse personal, como si le estuvieras hablando a un amigo cercano. El fondo puede tener elementos decorativos suaves (plantas, luces navideñas tenues, libros).</li>
+                        <li><strong>Qué ponerte:</strong> Ropa cómoda y casual. Algo que te haga sentir TÚ MISMA. Un suéter acogedor, por ejemplo.</li>
+                    </ul>
+
+                    <h4>Paso 2 - Configuración técnica:</h4>
+                    <ul>
+                        <li><strong>Cámara:</strong> Video vertical. La cámara debe estar a la altura de tus ojos o ligeramente más alta.</li>
+                        <li><strong>Distancia:</strong> Ni muy cerca ni muy lejos. Debe verse tu rostro claramente y parte de tu torso superior.</li>
+                        <li><strong>Iluminación:</strong> Luz suave y cálida. Si es luz natural, que venga de frente o del costado (no de atrás). Si usas luz artificial, que sea tenue, no muy fuerte.</li>
+                        <li><strong>Audio:</strong> Asegúrate de estar en un lugar silencioso. Tu voz debe escucharse clara y sin eco.</li>
+                    </ul>
+
+                    <h4>Paso 3 - Cómo hablar y actuar:</h4>
+                    <ul>
+                        <li><strong>Tono de voz:</strong> Este es uno de los videos más importantes. Tu voz debe ser:
+                            <ul>
+                                <li>AUTÉNTICA: Habla desde el corazón</li>
+                                <li>CALMADA: No hay prisa. Cada palabra importa</li>
+                                <li>EMOCIONAL: Si sientes ganas de llorar o tu voz se quiebra, DÉJALO. Eso es hermoso y real</li>
+                            </ul>
+                        </li>
+                        <li><strong>Contacto visual:</strong> Mira DIRECTAMENTE a la cámara todo el tiempo, como si estuvieras mirando a los ojos de alguien. Esto crea conexión profunda.</li>
+                        <li><strong>Pausas:</strong> Haz pausas donde están marcadas. Las pausas permiten que tus palabras respiren y que quien te escucha procese lo que dijiste.</li>
+                        <li><strong>Gestos:</strong> Usa tus manos de manera natural para enfatizar, pero no exageres. Movimientos suaves y lentos.</li>
+                    </ul>
+
+                    <h4>Paso 4 - Cómo prepararte emocionalmente:</h4>
+                    <ul>
+                        <li>Antes de grabar, toma un momento para orar o reflexionar.</li>
+                        <li>Recuerda POR QUÉ realmente escribiste la canción. Conecta con esa razón.</li>
+                        <li>No memorices el guion palabra por palabra de manera robótica. Léelo varias veces y luego SIENTE las palabras.</li>
+                        <li>Si en algún momento te emocionas demasiado y no puedes continuar, ESTÁ BIEN. Haz una pausa, respira, y vuelve a intentar.</li>
+                        <li>Puedes grabar el video en secciones si es más fácil, y luego unirlas en la edición.</li>
+                    </ul>
+
+                    <h4>Paso 5 - Consejos finales:</h4>
+                    <ul>
+                        <li>NO te apresures al grabar. Este video necesita tiempo.</li>
+                        <li>Graba varias tomas completas. Luego elige la que se sienta más genuina.</li>
+                        <li>No busques perfección técnica. Busca AUTENTICIDAD.</li>
+                        <li>Si tartamudeas o te equivocas en una palabra, no importa. Eso lo hace más humano.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución:</strong> 1080x1920px</li>
+                        <li><strong>Frame rate:</strong> 24fps o 30fps (24fps da un toque más "cinematográfico" y apropiado para contenido emocional)</li>
+                        <li><strong>Audio de fondo:</strong>
+                            <ul>
+                                <li>Usa un instrumental SÚPER suave de "Jesús es Navidad" muy bajo en el fondo</li>
+                                <li>O música ambiental piano/cuerdas MUY tenue</li>
+                                <li>El audio debe ser apenas perceptible, para no distraer de la voz</li>
+                            </ul>
+                        </li>
+                        <li><strong>Edición de audio:</strong>
+                            <ul>
+                                <li>Limpia cualquier ruido de fondo</li>
+                                <li>Aumenta ligeramente la claridad de la voz</li>
+                                <li>Si hay pausas muy largas, acórtalas un poco (pero no elimines las pausas emocionales)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Efectos visuales:</strong>
+                            <ul>
+                                <li>MÍNIMOS. Este video debe sentirse crudo y real</li>
+                                <li>NO uses transiciones llamativas</li>
+                                <li>Si hay cortes, usa fades suaves entre clips</li>
+                            </ul>
+                        </li>
+                        <li><strong>Color grading:</strong>
+                            <ul>
+                                <li>Tonos cálidos y acogedores</li>
+                                <li>Reduce un poco la saturación para dar sensación de nostalgia</li>
+                                <li>Aumenta levemente las sombras para que se vea más íntimo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subtítulos:</strong>
+                            <ul>
+                                <li>IMPRESCINDIBLE que haya subtítulos</li>
+                                <li>Usa fuente simple y legible (blanca con borde negro sutil)</li>
+                                <li>Los subtítulos deben aparecer sincronizados con cada frase</li>
+                            </ul>
+                        </li>
+                        <li><strong>B-roll (opcional):</strong>
+                            <ul>
+                                <li>Puedes insertar por 2-3 segundos clips breves de:
+                                    <ul>
+                                        <li>El pesebre (ilustración o foto)</li>
+                                        <li>Una Biblia abierta en Lucas 2</li>
+                                        <li>La portada de la canción</li>
+                                    </ul>
+                                </li>
+                                <li>Pero solo si enriquece el mensaje. Si no, déjalo solo con tu rostro</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cierre:</strong>
+                            <ul>
+                                <li>Después de que terminas de hablar, mantén la imagen por 2 segundos más</li>
+                                <li>Fade suave a negro</li>
+                                <li>Aparece texto: "JESÚS ES NAVIDAD - DISPONIBLE AHORA 🎄"</li>
+                                <li>Luego aparece: "Link en bio ⬆️"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota para Sandra:</strong> Este es TU momento. Este video es profundo, reflexivo, y está HECHO para alguien con tu personalidad. No necesitas ser extrovertida. Solo necesitas ser honesta. Este tipo de contenido es el que realmente toca corazones y crea conexiones reales. Las personas están cansadas de contenido superficial. Quieren autenticidad. Y tú tienes eso. No tengas miedo de ser vulnerable. Esa vulnerabilidad es tu superpoder.
+                </div>
+            </div>
+        </div>
+
+        <!-- DÍA 5 -->
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <h2>📅 DÍA 5 - POST-LANZAMIENTO</h2>
+                
+            </div>
+            <div class="day-content">
+                <span class="content-type entretenimiento">ENTRETENIMIENTO</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "Navidad con Jesús vs. Navidad sin Jesús 🎄❌ (la diferencia es real)"</p>
+                    <p><strong>Duración:</strong> 30-40 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok de comparación viral</p>
+                    <p><strong>Nota:</strong> Este es un formato de "versus" que funciona INCREÍBLEMENTE bien en redes. Es divertido, tiene mensaje profundo, y es fácil de compartir.</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-3):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Apareces en pantalla dividida verticalmente - tú a la izquierda Y a la derecha al mismo tiempo]</strong><br><br>
+                            <strong>[Texto en pantalla sobre tu lado izquierdo: "NAVIDAD CON JESÚS ✝️"]</strong><br>
+                            <strong>[Texto en pantalla sobre tu lado derecho: "NAVIDAD SIN JESÚS ❌"]</strong><br><br>
+                            <strong>[Miras a la cámara con expresión de "esto se va a poner bueno"]</strong><br><br>
+                            "Ok, veamos la diferencia..."
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 4-35):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>⭐ LADO IZQUIERDO (Con Jesús):</strong><br><br>
+                            <strong>[Tu expresión es de paz y alegría genuina]</strong><br><br>
+                            <strong>[Dices con voz calmada y feliz:]</strong><br>
+                            "Recordando que Jesús nació para salvarnos..."<br><br>
+                            <strong>[Abres los brazos como en adoración]</strong><br>
+                            "...celebrando su amor y su sacrificio..."<br><br>
+                            <strong>[Colocas tu mano en el pecho]</strong><br>
+                            "...sintiendo paz y propósito verdadero..."<br><br>
+                            <strong>[Sonríes con ternura]</strong><br>
+                            "...y compartiendo ese amor con otros."<br><br>
+                            
+                            <hr style="margin: 20px 0;">
+                            
+                            <strong>❌ LADO DERECHO (Sin Jesús):</strong><br><br>
+                            <strong>[Tu expresión es de estrés cómico y agotamiento]</strong><br><br>
+                            <strong>[Dices con voz rápida y estresada:]</strong><br>
+                            "¿Ya compraste los regalos? ¿Ya decoraste? ¿Ya planeaste la cena?"<br><br>
+                            <strong>[Te llevas las manos a la cabeza]</strong><br>
+                            "¿Por qué la tarjeta de crédito está al límite?"<br><br>
+                            <strong>[Finges llorar dramáticamente]</strong><br>
+                            "¿Esto es paz? ¡Esto es caos!"<br><br>
+                            <strong>[Haces una cara de confusión total]</strong><br>
+                            "Espera... ¿por qué celebramos de nuevo?"<br><br>
+                            
+                            <hr style="margin: 20px 0;">
+                            
+                            <strong>[La pantalla dividida se une - ahora estás solo en el centro]</strong><br><br>
+                            <strong>[Miras a la cámara con expresión seria pero amable]</strong><br><br>
+                            "Porque sin Jesús... la Navidad pierde todo su significado."
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 36-40):</h4>
+                    <div class="cta-box">
+                        <strong>[Sonríes y señalas hacia arriba]</strong><br>
+                        "'Jesús es Navidad' - La canción que te recuerda por qué celebramos. Escúchala ahora ⬆️ Link en bio 🎄"
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN</h3>
+                    
+                    <h4>Paso 1 - Cómo grabar el formato de pantalla dividida:</h4>
+                    <ul>
+                        <li><strong>Importante:</strong> Vas a grabar DOS videos separados, y luego en la edición se unirán lado a lado.</li>
+                        <li><strong>Configuración de cámara:</strong>
+                            <ul>
+                                <li>Video vertical, cámara a altura de tus ojos</li>
+                                <li>Coloca el trípode/celular en EXACTAMENTE el mismo lugar para ambas grabaciones</li>
+                                <li>Misma iluminación para ambas grabaciones</li>
+                                <li>Mismo fondo para ambas grabaciones</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 2 - Grabar el lado "CON JESÚS" (Video 1):</h4>
+                    <ul>
+                        <li><strong>Qué ponerte:</strong> Ropa de colores claros y cálidos (blanco, beige, tonos pasteles).</li>
+                        <li><strong>Expresión facial:</strong>
+                            <ul>
+                                <li>Sonrisa genuina y tranquila</li>
+                                <li>Ojos relajados y llenos de paz</li>
+                                <li>Postura erguida pero no rígida</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cómo hablar:</strong>
+                            <ul>
+                                <li>Voz suave, calmada, pausada</li>
+                                <li>Tono alegre pero no hiperactivo</li>
+                                <li>Como si estuvieras compartiendo algo hermoso y valioso</li>
+                            </ul>
+                        </li>
+                        <li><strong>Gestos:</strong>
+                            <ul>
+                                <li>Cuando digas "celebrando su amor", abre los brazos suavemente</li>
+                                <li>Cuando digas "sintiendo paz", pon tu mano en tu pecho</li>
+                                <li>Movimientos lentos y gráciles</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 3 - Grabar el lado "SIN JESÚS" (Video 2):</h4>
+                    <ul>
+                        <li><strong>Qué ponerte:</strong> La MISMA ropa, pero puedes despeinarla un poco o ponerte algo encima (como un gorro torcido o bufanda desordenada) para dar efecto cómico.</li>
+                        <li><strong>Expresión facial:</strong>
+                            <ul>
+                                <li>Cara de estrés cómico</li>
+                                <li>Ojos bien abiertos, cejas arrugadas</li>
+                                <li>Puedes hacer muecas exageradas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cómo hablar:</strong>
+                            <ul>
+                                <li>Voz RÁPIDA y ansiosa</li>
+                                <li>Tono más agudo de lo normal</li>
+                                <li>Como si estuvieras al borde de un colapso nervioso (pero de forma divertida)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Gestos:</strong>
+                            <ul>
+                                <li>Cuando digas "¿Ya compraste?", agita tus manos frenéticamente</li>
+                                <li>Cuando digas "tarjeta de crédito al límite", llévate las manos a la cabeza</li>
+                                <li>Cuando "llores", finge limpiar lágrimas de manera exagerada y cómica</li>
+                                <li>Movimientos RÁPIDOS y bruscos (contrario al lado "con Jesús")</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 4 - Grabar el cierre (Video 3):</h4>
+                    <ul>
+                        <li>Graba un tercer clip corto de ti en el centro, sin pantalla dividida.</li>
+                        <li>Expresión seria y reflexiva cuando digas "sin Jesús, la Navidad pierde todo su significado".</li>
+                        <li>Luego sonríe para el CTA final.</li>
+                    </ul>
+
+                    <h4>Paso 5 - Consejos importantes:</h4>
+                    <ul>
+                        <li><strong>Exagera el contraste:</strong> El lado "sin Jesús" debe ser VISIBLEMENTE estresado y cómico. El lado "con Jesús" debe ser VISIBLEMENTE pacífico.</li>
+                        <li><strong>Sincronización:</strong> Aunque vas a grabar por separado, intenta que la duración de cada frase sea similar para que al editarlas se vean balanceadas.</li>
+                        <li><strong>Diviértete:</strong> El lado "sin Jesús" es cómico a propósito. No tengas miedo de exagerar.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución final:</strong> 1080x1920px</li>
+                        <li><strong>Frame rate:</strong> 30fps</li>
+                        <li><strong>Edición de pantalla dividida:</strong>
+                            <ul>
+                                <li>Video 1 (Con Jesús) a la IZQUIERDA, ocupa 50% del ancho</li>
+                                <li>Video 2 (Sin Jesús) a la DERECHA, ocupa 50% del ancho</li>
+                                <li>Ambos videos deben reproducirse SIMULTÁNEAMENTE</li>
+                                <li>Línea divisoria en el centro: delgada y blanca</li>
+                            </ul>
+                        </li>
+                        <li><strong>Audio:</strong>
+                            <ul>
+                                <li>Ambos audios (de video 1 y 2) deben escucharse al MISMO tiempo</li>
+                                <li>Esto creará un efecto cómico de "caos" cuando ambas versiones hablen simultáneamente</li>
+                                <li>Balancear el volumen para que ambos se escuchen claramente</li>
+                            </ul>
+                        </li>
+                        <li><strong>Texto en pantalla:</strong>
+                            <ul>
+                                <li>Lado izquierdo: "NAVIDAD CON JESÚS ✝️" en la parte superior (fuente blanca con sombra)</li>
+                                <li>Lado derecho: "NAVIDAD SIN JESÚS ❌" en la parte superior (fuente roja con sombra)</li>
+                                <li>Mantener estos títulos durante todo el segmento dividido</li>
+                            </ul>
+                        </li>
+                        <li><strong>Efectos visuales:</strong>
+                            <ul>
+                                <li>Lado "Con Jesús": Color grading cálido y luminoso, tonos dorados</li>
+                                <li>Lado "Sin Jesús": Color grading más frío o grisáceo, puedes agregar un leve efecto de "shake" (temblor) para enfatizar el caos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transición al cierre:</strong>
+                            <ul>
+                                <li>Cuando termine el segmento dividido, usa un "wipe" donde ambos lados se unen hacia el centro</li>
+                                <li>Aparece Video 3 (el cierre) en pantalla completa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Música de fondo:</strong>
+                            <ul>
+                                <li>Durante la sección dividida: NO uses música de fondo, el contraste de las dos voces es suficiente</li>
+                                <li>Durante el cierre: Entra suavemente el coro de "Jesús es Navidad"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subtítulos:</strong> Opcionales para este video, ya que hay mucho texto visual. Pero si los usas, que sean mínimos.</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota para Sandra:</strong> Este formato es PERFECTO para viralizarse porque es entretenido, tiene un mensaje claro, y es fácil de compartir. Aunque es cómico, el mensaje es profundo. No tengas miedo de ser un poco dramática y exagerada en el lado "Sin Jesús" - eso es lo que lo hace viral. Y recuerda: puedes grabar cada lado múltiples veces hasta que te sientas cómoda. La edición hará la magia de unirlos perfectamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- DÍA 6 -->
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <h2>📅 DÍA 6 - POST-LANZAMIENTO</h2>
+                
+            </div>
+            <div class="day-content">
+                <span class="content-type educativo">EDUCATIVO + BACKSTAGE</span>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎬</span>CONCEPTO DEL VIDEO</h3>
+                    <p><strong>Título:</strong> "Detrás de la letra: El versículo que inspiró cada línea de 'Jesús es Navidad' 📖✨"</p>
+                    <p><strong>Duración:</strong> 60-75 segundos</p>
+                    <p><strong>Formato:</strong> Video vertical (9:16) - Reel/TikTok educativo profundo con elementos visuales</p>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">📝</span>GUION DETALLADO PALABRA POR PALABRA</h3>
+                    
+                    <h4>🎯 HOOK (Segundos 0-4):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>[Estás sentada con una Biblia en tus manos]</strong><br><br>
+                            <strong>[Miras a la cámara con una sonrisa]</strong><br><br>
+                            "Cada línea de 'Jesús es Navidad' está basada en un versículo bíblico..."<br><br>
+                            <strong>[Abres la Biblia]</strong><br><br>
+                            "...y hoy te voy a mostrar cuáles son."
+                        </p>
+                    </div>
+
+                    <h4>💫 DESARROLLO (Segundos 5-65):</h4>
+                    <div class="guion-box">
+                        <p class="guion-text">
+                            <strong>📖 SECCIÓN 1:</strong><br><br>
+                            <strong>[Señalas la Biblia]</strong><br><br>
+                            "Cuando canto 'en un pesebre nacería el Mesías prometido'..."<br><br>
+                            <strong>[Texto en pantalla aparece: "Lucas 2:7"]</strong><br><br>
+                            "...me refiero a Lucas 2:7, que dice:"<br><br>
+                            <strong>[Lees con voz clara]</strong><br><br>
+                            "'Y dio a luz a su hijo primogénito, y lo envolvió en pañales, y lo acostó en un pesebre, porque no había lugar para ellos en el mesón'."<br><br>
+                            <strong>[Levantas la mirada]</strong><br><br>
+                            "El Rey del universo... en un pesebre. ¿Puedes creerlo?"<br><br>
+                            
+                            <hr style="margin: 20px 0;">
+                            
+                            <strong>📖 SECCIÓN 2:</strong><br><br>
+                            <strong>[Pasas las páginas de la Biblia]</strong><br><br>
+                            "Cuando canto 'el amado Hijo Unigénito de Dios'..."<br><br>
+                            <strong>[Texto en pantalla: "Juan 3:16"]</strong><br><br>
+                            "...estoy citando Juan 3:16:"<br><br>
+                            <strong>[Lees con ternura]</strong><br><br>
+                            "'Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna'."<br><br>
+                            <strong>[Sonríes con emoción]</strong><br><br>
+                            "Ese es Jesús. El regalo de Dios para nosotros."<br><br>
+                            
+                            <hr style="margin: 20px 0;">
+                            
+                            <strong>📖 SECCIÓN 3:</strong><br><br>
+                            <strong>[Buscas otra página]</strong><br><br>
+                            "Y cuando canto 'sobre heno y paja fue encontrado, todos los pastores le adoraron'..."<br><br>
+                            <strong>[Texto en pantalla: "Lucas 2:15-16"]</strong><br><br>
+                            "...viene de Lucas 2:15-16:"<br><br>
+                            <strong>[Lees con alegría]</strong><br><br>
+                            "'Pasemos, pues, hasta Belén, y veamos esto que ha sucedido... Y fueron de prisa, y hallaron a María y a José, y al niño acostado en el pesebre'."<br><br>
+                            <strong>[Cierras la Biblia suavemente y la abrazas]</strong><br><br>
+                            "Esta canción no es solo música... es la Palabra de Dios puesta en melodía."
+                        </p>
+                    </div>
+
+                    <h4>🎯 LLAMADO A LA ACCIÓN (Segundos 66-75):</h4>
+                    <div class="cta-box">
+                        <strong>[Miras directamente a la cámara]</strong><br>
+                        "Si quieres escuchar estas verdades en música, 'Jesús es Navidad' te está esperando. Link en mi bio 🎄 Y déjame en los comentarios cuál versículo te impactó más."
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><span class="emoji">🎥</span>INSTRUCCIONES DE GRABACIÓN</h3>
+                    
+                    <h4>Paso 1 - Preparación de props:</h4>
+                    <ul>
+                        <li><strong>Necesitas:</strong>
+                            <ul>
+                                <li>Una Biblia física (preferiblemente que se vea bien cuidada y real)</li>
+                                <li>Un marcador de páginas o post-its en las páginas que vas a leer (Lucas 2:7, Juan 3:16, Lucas 2:15-16)</li>
+                                <li>Un lugar cómodo para sentarte</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 2 - Configuración del espacio:</h4>
+                    <ul>
+                        <li><strong>Dónde grabar:</strong> Un lugar acogedor y silencioso. Puede ser:
+                            <ul>
+                                <li>Sentada en una silla o sofá con buena luz</li>
+                                <li>En tu escritorio o lugar de estudio</li>
+                                <li>En un rincón con fondo neutro y cálido</li>
+                            </ul>
+                        </li>
+                        <li><strong>Iluminación:</strong> Luz suave y cálida. Debe verse natural, como si estuvieras en una tarde tranquila leyendo la Biblia.</li>
+                        <li><strong>Fondo:</strong> Limpio y ordenado. Puede tener elementos como plantas, velas, o decoración navideña sutil.</li>
+                    </ul>
+
+                    <h4>Paso 3 - Configuración de cámara:</h4>
+                    <ul>
+                        <li><strong>Posición:</strong> Video vertical, cámara a la altura de tus ojos.</li>
+                        <li><strong>Encuadre:</strong> Debe verse tu rostro claramente Y la Biblia cuando la sostienes.</li>
+                        <li><strong>Distancia:</strong> Un poco más lejos que en otros videos, para que cuando abras la Biblia, se vea completa en el encuadre.</li>
+                    </ul>
+
+                    <h4>Paso 4 - Cómo actuar y leer:</h4>
+                    <ul>
+                        <li><strong>Al inicio:</strong>
+                            <ul>
+                                <li>Sostén la Biblia con las dos manos, cerca de tu pecho</li>
+                                <li>Mira a la cámara con expresión de emoción</li>
+                                <li>Cuando digas "te voy a mostrar cuáles son", baja la mirada hacia la Biblia y ábrela</li>
+                            </ul>
+                        </li>
+                        <li><strong>Al leer cada versículo:</strong>
+                            <ul>
+                                <li>Primero di la REFERENCIA (ejemplo: "Lucas 2:7")</li>
+                                <li>Haz una pausa de 1 segundo</li>
+                                <li>Luego LEE el versículo mirando la Biblia (no hace falta que lo memorices)</li>
+                                <li>Lee DESPACIO y con CLARIDAD - cada palabra importa</li>
+                                <li>Cuando termines de leer, levanta la mirada hacia la cámara para hacer tu comentario</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tono de voz:</strong>
+                            <ul>
+                                <li>Calmada y reverente al leer los versículos</li>
+                                <li>Un poco más animada al hacer tus comentarios</li>
+                                <li>No grites ni hables muy rápido - este es un video contemplativo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Gestos:</strong>
+                            <ul>
+                                <li>Cuando señales la Biblia, hazlo con cuidado y respeto</li>
+                                <li>Al pasar las páginas, hazlo despacio para que se vea bien en cámara</li>
+                                <li>Al final, cuando abraces la Biblia, hazlo con ternura</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Paso 5 - Consejos de grabación:</h4>
+                    <ul>
+                        <li><strong>Practica antes:</strong> Lee los versículos en voz alta varias veces antes de grabar para familiarizarte con las palabras.</li>
+                        <li><strong>Marca las páginas:</strong> Usa post-its o marcadores para encontrar rápido cada versículo y no perder tiempo durante la grabación.</li>
+                        <li><strong>Graba por secciones:</strong> Puedes grabar cada versículo por separado y luego unirlos en la edición. Así es más fácil.</li>
+                        <li><strong>Audio claro:</strong> Como vas a leer, asegúrate de que tu voz se escuche PERFECTAMENTE. Nada de ruido de fondo.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-specs">
+                    <h4>⚙️ ESPECIFICACIONES TÉCNICAS PARA EDICIÓN</h4>
+                    <ul>
+                        <li><strong>Resolución:</strong> 1080x1920px</li>
+                        <li><strong>Frame rate:</strong> 24fps o 30fps</li>
+                        <li><strong>Audio de fondo:</strong>
+                            <ul>
+                                <li>Música instrumental de piano MUY suave y baja</li>
+                                <li>O usa un fragmento instrumental de "Jesús es Navidad" en versión piano (si existe)</li>
+                                <li>El audio debe estar tan bajo que casi no se note - la prioridad es tu voz</li>
+                            </ul>
+                        </li>
+                        <li><strong>Texto en pantalla:</strong>
+                            <ul>
+                                <li>Cada vez que menciones un versículo (ej: "Lucas 2:7"), aparece ese texto en pantalla en letras GRANDES</li>
+                                <li>Usa fuente elegante pero legible (tipo serif o script)</li>
+                                <li>Color dorado o blanco con sombra</li>
+                                <li>Animación de entrada: fade in suave</li>
+                                <li>El texto debe permanecer en pantalla hasta que termines de leer ese versículo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Subtítulos:</strong>
+                            <ul>
+                                <li>IMPRESCINDIBLE en este video</li>
+                                <li>Deben aparecer simultáneamente con tu voz</li>
+                                <li>Cuando leas los versículos, los subtítulos deben aparecer palabra por palabra (estilo karaoke) para que la gente pueda seguir la lectura</li>
+                            </ul>
+                        </li>
+                        <li><strong>B-roll (imágenes de apoyo):</strong>
+                            <ul>
+                                <li>Para cada versículo, inserta brevemente (2-3 segundos) una ilustración o imagen relacionada:
+                                    <ul>
+                                        <li>Lucas 2:7: Imagen del pesebre</li>
+                                        <li>Juan 3:16: Una cruz o imagen de Jesús</li>
+                                        <li>Lucas 2:15-16: Pastores adorando</li>
+                                    </ul>
+                                </li>
+                                <li>Estas imágenes deben aparecer como overlay semi-transparente o en pantalla completa por un par de segundos mientras sigues hablando</li>
+                            </ul>
+                        </li>
+                        <li><strong>Transiciones:</strong>
+                            <ul>
+                                <li>Entre cada sección de versículo, usa un fade suave a negro (0.5 segundos)</li>
+                                <li>O usa un efecto de "voltear página" si quieres darle un toque más creativo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Color grading:</strong>
+                            <ul>
+                                <li>Tonos cálidos y acogedores</li>
+                                <li>Aumenta levemente el contraste para que la Biblia se vea clara</li>
+                                <li>Dale un toque "vintage" o "film" para que se sienta nostálgico y profundo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Efectos especiales:</strong>
+                            <ul>
+                                <li>Cuando abraces la Biblia al final, puedes agregar un sutil "glow" o partículas de luz dorada alrededor</li>
+                                <li>No exageres - debe verse elegante, no cursi</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cierre del video:</strong>
+                            <ul>
+                                <li>Después de tu CTA, fade a negro</li>
+                                <li>Aparece la portada de "Jesús es Navidad"</li>
+                                <li>Texto: "ESCUCHA LA PALABRA EN MÚSICA 🎶"</li>
+                                <li>Luego: "LINK EN BIO 🎄"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Nota para Sandra:</strong> Este es el video PERFECTO para cerrar la semana de lanzamiento. Es profundo, educativo, y muestra el corazón verdadero detrás de la canción. Este tipo de contenido no solo promueve tu música, sino que también ministra a las personas. Es el equilibrio perfecto entre evangelización y promoción musical. Y como prefieres contenido con guion y profundidad, este video es 100% tu zona de confort. Tómate tu tiempo, disfruta el proceso, y recuerda: estás compartiendo la Palabra de Dios. Eso siempre, SIEMPRE, tiene impacto eterno.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDay(element) {
+            const content = element.nextElementSibling;
+            element.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // Open first day by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstDay = document.querySelector('.day-header');
+            if (firstDay) {
+                toggleDay(firstDay);
+            }
+        });
+    </script>
+</body>
+</html>

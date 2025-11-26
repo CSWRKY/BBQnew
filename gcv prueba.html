@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupo Cerámico del Valle - Estrategia de 8 Reels</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-top: 6px solid #EF0000;
+    }
+    .header h1 {
+      color: #1a1a1a;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .header .subtitle {
+      color: #606a71;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+    }
+    .colors {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .color-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .stat-card {
+      background: #f9fafb;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .stat-card .label {
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    .stat-card .value {
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+    .reel-card {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .reel-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .reel-header {
+      padding: 25px;
+    }
+    .reel-title-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .reel-number {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #EF0000;
+    }
+    .reel-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+    .duration-badge {
+      background: #f4931c;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .reel-hook {
+      color: #444;
+      font-style: italic;
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #fef2f2;
+      border-radius: 8px;
+      border-left: 4px solid #EF0000;
+    }
+    .reel-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 500;
+    }
+    .tag-type {
+      background: #f3f4f6;
+      color: #374151;
+    }
+    .tag-objetivo {
+      background: #fee2e2;
+      color: #EF0000;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .icon {
+      font-size: 1.3em;
+    }
+    .simple-guion {
+      background: #fffbeb;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #f4931c;
+    }
+    .momento {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 3px solid #EF0000;
+    }
+    .momento-tiempo {
+      color: #EF0000;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .momento-accion {
+      color: #444;
+      margin-bottom: 5px;
+    }
+    .momento-dialogo {
+      background: #f9fafb;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-style: italic;
+      color: #1a1a1a;
+    }
+    .tips-box {
+      background: #dcfce7;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      border-left: 4px solid #22c55e;
+    }
+    .tips-box h4 {
+      color: #166534;
+      margin-bottom: 10px;
+    }
+    .tips-box ul {
+      margin-left: 20px;
+      color: #166534;
+    }
+    .caption-box {
+      background: #1a1a1a;
+      color: #e5e7eb;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Grupo Cerámico del Valle</h1>
+      <p class="subtitle">Estrategia de 8 Reels | Black Friday 2025</p>
+      <div class="colors">
+        <div class="color-box" style="background: #EF0000;"></div>
+        <div class="color-box" style="background: #f4931c;"></div>
+        <div class="color-box" style="background: #606a71;"></div>
+      </div>
+      <div class="stats">
+        <div class="stat-card"><div class="label">Formato</div><div class="value">Talking Head Simple</div></div>
+        <div class="stat-card"><div class="label">Periodo</div><div class="value">8–30 Noviembre 2025</div></div>
+        <div class="stat-card"><div class="label">Black Friday</div><div class="value" style="color:#EF0000;">28–30 Noviembre</div></div>
+      </div>
+    </div>
+
+    <!-- Aquí van tus REELS -->
+    <!-- Copia y pega cada bloque .reel-card desde tu archivo original -->
+    <!-- Asegúrate de cambiar class="reel-body" a class="reel-body expanded" para que todos estén abiertos -->
+    <!-- Ejemplo mostrado antes -->
+    <!-- ... pega aquí tus 8 reels completos ... -->
+    <!-- REEL 1 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel1')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#1</span>
+                            <h3 class="reel-title">¿Cuándo Fue La Última Vez?</h3>
+                            <span class="duration-badge">20-25s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "Pregunta honesta: ¿cuándo fue la última vez que miraste tu baño y pensaste 'me encanta este espacio'?"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Conversacional + Reflexión</span>
+                            <span class="tag tag-objetivo">Identificación emocional</span>
+                        </div>
+                    </div>
+                    <div id="reel1" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - HOOK</div>
+                                    <div class="momento-accion">Tú hablando directo a cámara en el showroom</div>
+                                    <div class="momento-dialogo">
+                                        "Pregunta honesta: ¿cuándo fue la última vez que miraste tu baño y pensaste 'me encanta este espacio'? Si no lo recuerdas... este video es para ti."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-12s - CONTEXTO</div>
+                                    <div class="momento-accion">Caminas mostrando grifos/productos mientras hablas</div>
+                                    <div class="momento-dialogo">
+                                        "Mira, la mayoría de personas pasa 5, 10, hasta 15 años con el mismo baño... y un día se dan cuenta que ya no les gusta estar ahí. Y ahí es donde nosotros entramos."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">12-20s - SOLUCIÓN</div>
+                                    <div class="momento-accion">Tocas/muestras un producto específico</div>
+                                    <div class="momento-dialogo">
+                                        "Aquí en Grupo Cerámico del Valle te ayudamos a transformar ese espacio. No solo cambiamos grifos, cambiamos cómo te sientes en tu propio hogar. ¿Empezamos?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Habla como si le explicaras a un amigo</li>
+                                    <li>Mantén contacto visual con la cámara</li>
+                                    <li>Sonríe natural, no forzado</li>
+                                    <li>No leas, habla de memoria o usa puntos clave</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">A veces solo necesitas hacer una pausa... y preguntarte si tu baño te hace feliz. 🤔
+
+En Grupo Cerámico del Valle entendemos que renovar va más allá de cambiar una grifería. Es transformar la experiencia completa de tu hogar.
+
+💧 Marcas reconocidas
+🔧 Calidad garantizada
+💬 Asesoría personalizada
+
+¿Qué espacio de tu casa está pidiendo amor?
+
+#RenovaciónDeBaños #CaliColombia #HomeUpgrade #DiseñoDeInteriores #CocinaModerna #TransformaciónHogar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 2 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel2')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#2</span>
+                            <h3 class="reel-title">La Grifo de Temu</h3>
+                            <span class="duration-badge">18-22s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "Antes de comprar ese grifo en Temu... déjame mostrarte algo 👀"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Educativo + Humor</span>
+                            <span class="tag tag-objetivo">Captar comparadores de precio</span>
+                        </div>
+                    </div>
+                    <div id="reel2" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - HOOK</div>
+                                    <div class="momento-accion">Sostienes tu celular como mostrando Temu</div>
+                                    <div class="momento-dialogo">
+                                        "Antes de darle 'comprar' a ese grifo en Temu... mira esto. Porque sí, puede ser más barato, pero..."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-12s - REALIDAD</div>
+                                    <div class="momento-accion">Hablas directo a cámara con expresión seria</div>
+                                    <div class="momento-dialogo">
+                                        "Llega en 3 semanas, viene con piezas faltantes, no sabes si es original, la garantía es un rollo, y si algo sale mal... buena suerte con el servicio al cliente."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">12-20s - ALTERNATIVA</div>
+                                    <div class="momento-accion">Señalas productos detrás de ti en showroom</div>
+                                    <div class="momento-dialogo">
+                                        "O... vienes aquí, lo tocas, lo ves, te asesoramos bien, y te lo llevas HOY. Con garantía real. En persona. Sin sorpresas. ¿Cuál prefieres?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Usa un tono amigable pero honesto</li>
+                                    <li>El humor debe ser ligero, no agresivo contra Temu</li>
+                                    <li>Enfatiza los beneficios, no solo los problemas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">La foto online vs la realidad. Ya conoces el drama 📦😅
+
+En nuestro showroom: tocas, pruebas, comparas y te lo llevas el mismo día.
+
+✅ Stock disponible
+✅ Garantía directa  
+✅ Asesoría en persona
+✅ Sin esperas ni sorpresas
+
+Algunas cosas aún se compran mejor cara a cara.
+
+📍 Visítanos en Cali
+
+#CompraLocal #ShowroomExperience #SinSorpresas #CaliColombia #GarantíaReal #ComercioLocal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 3 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel3')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#3</span>
+                            <h3 class="reel-title">$200 vs $800 en Grifos</h3>
+                            <span class="duration-badge">22-28s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "Esto NO te lo dice nadie cuando compras un grifo... 🤫"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Educativo + Autoridad</span>
+                            <span class="tag tag-objetivo">Construir confianza</span>
+                        </div>
+                    </div>
+                    <div id="reel3" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-6s - HOOK</div>
+                                    <div class="momento-accion">Sostienes dos grifos, uno en cada mano</div>
+                                    <div class="momento-dialogo">
+                                        "Mira, este cuesta $200... y este $800. Mismo diseño. ¿Cuál es la diferencia real? Nadie te dice esto cuando compras..."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">6-15s - EXPLICACIÓN</div>
+                                    <div class="momento-accion">Hablas mostrando uno de los grifos de cerca</div>
+                                    <div class="momento-dialogo">
+                                        "No es el brillo. Es que uno te va a durar 2 años... y el otro 20 años. La diferencia está en la tecnología interna, los materiales, el cartucho... cosas que no ves pero sí vas a sentir."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">15-25s - PROMESA</div>
+                                    <div class="momento-accion">Hablas directo a cámara, serio</div>
+                                    <div class="momento-dialogo">
+                                        "Aquí en Grupo Cerámico solo traemos marcas que nosotros mismos usaríamos en casa. Porque renovar no es gastar... es invertir bien. ¿Te ayudo a escoger?"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Muestra productos reales</li>
+                                    <li>Habla con autoridad pero sin ser condescendiente</li>
+                                    <li>El tono debe ser: "te voy a contar algo importante"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">La verdad que nadie te cuenta sobre griferías 🚰💡
+
+La diferencia entre un producto de $200 y uno de $800 no es solo el precio... es que uno es una compra, y el otro es una inversión.
+
+🔍 Asesoría técnica real
+🏆 Solo marcas premium  
+💎 Relación precio-calidad garantizada
+
+En Grupo Cerámico del Valle te explicamos EXACTAMENTE qué estás comprando.
+
+¿Dudas? Estamos para resolverlas.
+
+#ConsejosDeExpertos #GriferíaPremium #InversiónSegura #CalidadGarantizada #AsesoríaPersonalizada</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 4 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel4')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#4</span>
+                            <h3 class="reel-title">Cuando Tu Suegra Avisa</h3>
+                            <span class="duration-badge">15-20s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "POV: Tu suegra avisa que viene en 2 horas... 😱"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Humor + Identificación</span>
+                            <span class="tag tag-objetivo">Viralización</span>
+                        </div>
+                    </div>
+                    <div id="reel4" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - HOOK</div>
+                                    <div class="momento-accion">Cara de pánico mirando tu celular</div>
+                                    <div class="momento-dialogo">
+                                        "Mensaje: 'Hija, voy para tu casa en 2 horas' ... y tu cocina está... 💀 Ya sabes."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-10s - DRAMA</div>
+                                    <div class="momento-accion">Gesto exagerado de estrés</div>
+                                    <div class="momento-dialogo">
+                                        "Empiezas a limpiar como loca, a esconder cosas, el grifo sucio, el mesón... ¿te ha pasado? Sí, a todos."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">10-18s - SOLUCIÓN</div>
+                                    <div class="momento-accion">Cambias a actitud relajada, señalas showroom</div>
+                                    <div class="momento-dialogo">
+                                        "O... puedes tener una cocina que SIEMPRE esté lista. Donde no importa quién venga. Porque la renovaste bien, con productos que duran y se mantienen lindos. Problema resuelto."
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Este reel es más teatral, diviértete</li>
+                                    <li>Exagera las expresiones faciales</li>
+                                    <li>El humor debe ser universal (todos hemos vivido esto)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">Plot twist: tu cocina siempre lista para cualquier visita sorpresa 😎
+
+Basta de estrés. Renueva una vez, bien hecho, y olvídate del drama.
+
+✨ Diseños que impresionan
+🚿 Griferías que duran  
+⏰ Sin largas esperas
+
+Porque la vida ya es suficientemente complicada.
+
+#HumorLatino #VidaReal #SuegraApproved #CocinaModerna #HomeMakeover</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 5 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel5')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#5</span>
+                            <h3 class="reel-title">El Cliente Que Volvió</h3>
+                            <span class="duration-badge">20-25s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "Un cliente volvió después de 5 años... y me dijo esto 🥺"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Testimonio + Emoción</span>
+                            <span class="tag tag-objetivo">Prueba social</span>
+                        </div>
+                    </div>
+                    <div id="reel5" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - HOOK</div>
+                                    <div class="momento-accion">Expresión nostálgica/emotiva mirando a cámara</div>
+                                    <div class="momento-dialogo">
+                                        "Hace 5 años le vendimos a un señor su primera grifería para su baño. Ayer volvió... y me dijo algo que me llegó al corazón."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-13s - HISTORIA</div>
+                                    <div class="momento-accion">Hablas más pausado, conectando emocionalmente</div>
+                                    <div class="momento-dialogo">
+                                        "Me dijo: 'Mira, ese grifo sigue perfecto. Cero problemas. Ahora compré casa nueva y vine directo aquí porque sé que ustedes venden cosas que DURAN.' Eso... eso es lo que nos importa."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">13-23s - PROMESA</div>
+                                    <div class="momento-accion">Tono más serio, mirando fijo a cámara</div>
+                                    <div class="momento-dialogo">
+                                        "En Grupo Cerámico no vendemos para hoy. Vendemos para los próximos 10, 15, 20 años. Porque cuando vuelves después de 5 años... queremos que sea porque te fue tan bien que quieres repetir, no porque algo se dañó."
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Este es el reel más emotivo - baja el ritmo</li>
+                                    <li>Habla desde el corazón, no desde el "vendedor"</li>
+                                    <li>Pausa después de frases importantes</li>
+                                    <li>Sé genuino - la gente detecta lo falso</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">Los mejores clientes no son los que compran más... son los que vuelven 💙
+
+Esta historia me recordó por qué hacemos lo que hacemos. No es solo vender productos, es construir confianza.
+
+🤝 Clientes que vuelven
+⏰ Productos que duran décadas
+💎 Calidad que se demuestra con el tiempo
+
+Cuando compras aquí, no es una transacción. Es el inicio de una relación.
+
+#ClientesSatisfechos #CalidadQuePerduran #NegocioLocal #ConfianzaReal #CaliColombia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 6 -->
+                <div class="reel-card">
+                    <div class="reel-header" onclick="toggleReel('reel6')">
+                        <div class="reel-title-row">
+                            <span class="reel-number">#6</span>
+                            <h3 class="reel-title">Lo Que Nadie Te Dice</h3>
+                            <span class="duration-badge">18-22s</span>
+                        </div>
+                        <div class="reel-hook">
+                            "3 cosas que NADIE te dice antes de renovar tu baño... 👇"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type">Educativo + Tips</span>
+                            <span class="tag tag-objetivo">Posicionamiento experto</span>
+                        </div>
+                    </div>
+                    <div id="reel6" class="reel-body">
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple</h4>
+                            <div class="simple-guion">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-3s - HOOK</div>
+                                    <div class="momento-accion">Levantas 3 dedos</div>
+                                    <div class="momento-dialogo">
+                                        "3 cosas que NADIE te dice antes de renovar tu baño... y deberían."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">3-9s - TIP 1</div>
+                                    <div class="momento-accion">Un dedo levantado</div>
+                                    <div class="momento-dialogo">
+                                        "Uno: La instalación importa TANTO como el producto. Puedes tener el mejor grifo del mundo, pero si lo instalan mal... se va a dañar igual."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">9-15s - TIP 2</div>
+                                    <div class="momento-accion">Dos dedos</div>
+                                    <div class="momento-dialogo">
+                                        "Dos: No todas las marcas son iguales. Hay diferencias GIGANTES en garantías, repuestos disponibles, y servicio postventa. Pregunta antes de comprar."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">15-20s - TIP 3</div>
+                                    <div class="momento-accion">Tres dedos, luego señalas a ti mismo</div>
+                                    <div class="momento-dialogo">
+                                        "Tres: Compra con alguien que te asesore bien. Aquí te explicamos TODO antes de vender. Porque no queremos que compres... queremos que compres BIEN."
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box">
+                                <h4>✅ Tips para grabar:</h4>
+                                <ul>
+                                    <li>Ritmo más rápido que otros reels</li>
+                                    <li>Los dedos ayudan a seguir visualmente</li>
+                                    <li>Énfasis en palabras clave (gigantes, todo, bien)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption</h4>
+                            <div class="caption-box">Guarda este reel para cuando vayas a renovar 🔖
+
+Años vendiendo nos han enseñado que la gente comete los MISMOS errores... y son evitables.
+
+✅ Instalación profesional
+✅ Marcas con respaldo real
+✅ Asesoría sin compromiso
+
+No cometas errores costosos. Pregunta primero.
+
+#TipsDeRenovación #ConsejosDeExpertos #ErroresComunes #RenovaciónInteligente #AsesoríaGratis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 7 - BLACK FRIDAY -->
+                <div class="reel-card" style="border: 3px solid #EF0000;">
+                    <div class="reel-header" onclick="toggleReel('reel7')">
+                        <div class="reel-title-row">
+                            <span class="reel-number" style="font-size: 2em;">🔥 #7</span>
+                            <h3 class="reel-title">BLACK FRIDAY Está Aquí</h3>
+                            <span class="duration-badge" style="background: #EF0000;">25-30s</span>
+                        </div>
+                        <div class="reel-hook" style="background: #fee2e2; border-color: #dc2626;">
+                            "OK, esto pasa UNA vez al año... y es AHORA 🔥"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type" style="background: #fecaca; color: #991b1b;">Black Friday - Anuncio</span>
+                            <span class="tag tag-objetivo" style="background: #dc2626; color: white;">CONVERSIÓN DIRECTA</span>
+                        </div>
+                    </div>
+                    <div id="reel7" class="reel-body">
+                        <div class="section" style="border: 2px solid #EF0000;">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion Simple BLACK FRIDAY</h4>
+                            <div class="simple-guion" style="background: #fee2e2; border-color: #dc2626;">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - HOOK FUERTE</div>
+                                    <div class="momento-accion">Energía alta, casi gritando de emoción</div>
+                                    <div class="momento-dialogo">
+                                        "OK escucha porque esto NO lo hacemos nunca: Black Friday en Grupo Cerámico. 28 al 30 de noviembre. 25% de descuento. Es REAL."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-13s - DETALLES</div>
+                                    <div class="momento-accion">Hablas rápido pero claro, tocas productos</div>
+                                    <div class="momento-dialogo">
+                                        "Mira, esto NUNCA está en descuento. Este grifo, $800 normalmente... con el código BF25, te lo llevas a $600. Son $200 reales que te ahorras. En productos que ya sabemos que duran 20 años."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">13-20s - URGENCIA</div>
+                                    <div class="momento-accion">Más serio, contacto visual directo</div>
+                                    <div class="momento-dialogo">
+                                        "Pero atención: SOLO 3 días. 28, 29 y 30 de noviembre. Stock limitado. No hacemos esto de nuevo hasta el próximo año. Si estabas pensando renovar... este es tu momento."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">20-28s - CALL TO ACTION</div>
+                                    <div class="momento-accion">Señalas a la cámara, energía de cierre</div>
+                                    <div class="momento-dialogo">
+                                        "Código BF25. Escríbelo. Guárdalo. Compártelo. Visítanos o escríbenos YA para separar productos. Porque cuando se acaba... se acabó. Nos vemos aquí 👇"
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box" style="background: #fee2e2; border-color: #dc2626;">
+                                <h4 style="color: #991b1b;">🔥 IMPORTANTE BLACK FRIDAY:</h4>
+                                <ul style="color: #991b1b;">
+                                    <li>Este reel debe tener MÁS energía que los demás</li>
+                                    <li>Habla más rápido pero sin perder claridad</li>
+                                    <li>Menciona el código BF25 mínimo 3 veces</li>
+                                    <li>Muestra productos reales con precios reales</li>
+                                    <li>La urgencia debe ser palpable pero no desesperada</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption BLACK FRIDAY</h4>
+                            <div class="caption-box" style="background: #dc2626; color: white;">🔥 BLACK FRIDAY 2025 🔥
+
+✨ 25% OFF productos seleccionados
+📅 SOLO 28, 29 y 30 de noviembre  
+🎟️ Código: BF25
+✅ Marcas premium incluidas
+🚚 Stock disponible AHORA
+⏰ Después = precio completo hasta 2026
+
+ESTO NO VUELVE HASTA EL PRÓXIMO AÑO.
+
+Si estabas pensando renovar... este es tu momento. No esperes.
+
+📍 Visítanos en Cali
+💬 DM para separar productos YA
+🔗 Dirección en bio
+
+*Aplica en productos marcados. No acumulable. Stock limitado. Garantía estándar incluida.
+
+#BlackFriday2025 #BF25 #DescuentosReales #UltimaOportunidad #RenovaciónInteligente #CaliColombia #NoTeLoPercas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REEL 8 - BLACK FRIDAY CIERRE -->
+                <div class="reel-card" style="border: 3px solid #dc2626;">
+                    <div class="reel-header" onclick="toggleReel('reel8')">
+                        <div class="reel-title-row">
+                            <span class="reel-number" style="font-size: 2em; color: #dc2626;">⏰ #8</span>
+                            <h3 class="reel-title">ÚLTIMO DÍA Black Friday</h3>
+                            <span class="duration-badge" style="background: #dc2626;">20-25s</span>
+                        </div>
+                        <div class="reel-hook" style="background: #fee2e2; border-color: #dc2626;">
+                            "Si no vienes HOY... esperas hasta 2026 💸"
+                        </div>
+                        <div class="reel-tags">
+                            <span class="tag tag-type" style="background: #fecaca; color: #991b1b;">Black Friday - CIERRE</span>
+                            <span class="tag tag-objetivo" style="background: #dc2626; color: white;">URGENCIA MÁXIMA</span>
+                        </div>
+                    </div>
+                    <div id="reel8" class="reel-body">
+                        <div class="section" style="border: 2px solid #dc2626;">
+                            <h4 class="section-title"><span class="icon">🎬</span>Guion CIERRE BLACK FRIDAY</h4>
+                            <div class="simple-guion" style="background: #fee2e2; border-color: #dc2626;">
+                                <div class="momento">
+                                    <div class="momento-tiempo">0-5s - URGENCIA MÁXIMA</div>
+                                    <div class="momento-accion">Tono serio, casi de advertencia amigable</div>
+                                    <div class="momento-dialogo">
+                                        "Es 30 de noviembre. ÚLTIMO día. Si no aprovechas hoy el 25% de descuento... el próximo Black Friday es en 2026. Un año completo pagando precio normal."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">5-12s - EJEMPLO REAL</div>
+                                    <div class="momento-accion">Muestras producto específico</div>
+                                    <div class="momento-dialogo">
+                                        "Mira, este grifo. Hoy $600 con BF25. Mañana... $800. Pierdes $200 por esperar un día. ¿Vale la pena? Tú decides."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">12-18s - STOCK</div>
+                                    <div class="momento-accion">Caminas mostrando el showroom</div>
+                                    <div class="momento-dialogo">
+                                        "Todavía tenemos stock. Pero ya varios productos se agotaron. Si había algo que querías... no esperes a mañana porque ya no va a estar con descuento."
+                                    </div>
+                                </div>
+                                
+                                <div class="momento">
+                                    <div class="momento-tiempo">18-23s - CIERRE DEFINITIVO</div>
+                                    <div class="momento-accion">Mirando fijo a cámara, pausado</div>
+                                    <div class="momento-dialogo">
+                                        "HOY. Hasta las 6pm. Código BF25. Esa es tu última chance de 2025. Te esperamos. O... nos vemos el próximo año."
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tips-box" style="background: #fee2e2; border-color: #dc2626;">
+                                <h4 style="color: #991b1b;">⚠️ CRÍTICO - ÚLTIMO DÍA:</h4>
+                                <ul style="color: #991b1b;">
+                                    <li>Este debe ser el reel MÁS urgente de todos</li>
+                                    <li>Tono serio pero no agresivo</li>
+                                    <li>Publicar temprano en la mañana (8-9am)</li>
+                                    <li>Mencionar hora de cierre (6pm o la que sea)</li>
+                                    <li>Repostear en stories cada 2-3 horas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h4 class="section-title"><span class="icon">📝</span>Caption ÚLTIMO DÍA</h4>
+                            <div class="caption-box" style="background: #7f1d1d; color: white;">⏰ ÚLTIMA LLAMADA ⏰
+
+HOY 30 de noviembre - ÚLTIMO DÍA
+⏰ Hasta las 6:00 PM
+🔥 Código BF25 - 25% OFF
+
+Mañana volvemos a precio completo.
+El próximo Black Friday es en 2026.
+
+¿Vas a esperar 12 meses pagando más?
+
+Todavía hay stock pero se está acabando RÁPIDO.
+
+📍 Visítanos HOY
+💬 DM AHORA para separar
+🔗 Dirección en bio
+
+Esta es tu última oportunidad de 2025.
+
+NO LA DEJES PASAR.
+
+#UltimaOportunidad #BlackFridayFinal #UltimoDia #BF25 #NoTeArrepientas #RenuevaYa #AhorraHoy</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+</div>
+           
+  </div>
+</body>
+</html>
