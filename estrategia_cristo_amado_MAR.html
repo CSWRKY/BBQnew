@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia CRISTO AMADO - MAR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF6EC7 0%, #C77DFF 50%, #9D4EDD 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(157, 78, 221, 0.3);
+        }
+        
+        .header h1 {
+            color: #9D4EDD;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 110, 199, 0.2);
+        }
+        
+        .header .subtitle {
+            color: #FF6EC7;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .phase-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(157, 78, 221, 0.2);
+        }
+        
+        .phase-title {
+            background: linear-gradient(135deg, #FF6EC7, #C77DFF);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 110, 199, 0.3);
+        }
+        
+        .day-card {
+            background: linear-gradient(135deg, #FFF5FB, #F3E8FF);
+            border-left: 6px solid #FF6EC7;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.2);
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .day-number {
+            background: linear-gradient(135deg, #FF6EC7, #9D4EDD);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 110, 199, 0.4);
+        }
+        
+        .day-title {
+            flex: 1;
+            font-size: 1.4em;
+            color: #9D4EDD;
+            font-weight: bold;
+        }
+        
+        .content-type {
+            background: #C77DFF;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            color: #9D4EDD;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: "✨";
+            font-size: 1.2em;
+        }
+        
+        .section-content {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #FFE5F5, #F3E8FF);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #9D4EDD;
+        }
+        
+        .icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        li::before {
+            content: "💜";
+            position: absolute;
+            left: 0;
+        }
+        
+        .tech-specs {
+            background: linear-gradient(135deg, #FF6EC7, #C77DFF);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-specs strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .day-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 CRISTO AMADO 🎵</h1>
+            <div class="subtitle">Estrategia de Lanzamiento - MAR</div>
+            <p style="color: #9D4EDD; margin-top: 15px; font-size: 1.1em;">10 Reels | 10 Días de Impacto</p>
+        </div>
+
+        <!-- PRE-LANZAMIENTO -->
+        <div class="phase-section">
+            <div class="phase-title">✨ FASE 1: PRE-LANZAMIENTO (Días 1-5)</div>
+            
+            <!-- DÍA 1 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">El Misterio Comienza</div>
+                    <div class="content-type">ENTRETENIMIENTO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Te grabarás en un lugar oscuro o con poca luz. Vas a actuar como si estuvieras perdida o triste. Luego, poco a poco, entra más luz (puede ser abriendo una ventana o encendiendo una luz).
+                        <br><br>
+                        <strong>QUÉ DECIR (con voz en off mientras grabas):</strong>
+                        <br>"Había un momento en mi vida donde todo era oscuro... pero algo estaba por cambiar. En 5 días conocerás mi historia. ¿Vienes conmigo?"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Habla suave al principio, casi susurrando. Al final, sube un poco el tono con esperanza.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Tu cara en la oscuridad al inicio. Luego, cuando entra la luz, sonríes un poquito.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Graba en formato vertical (de celular normal)</li>
+                            <li>Empieza en un cuarto oscuro, solo con un poquito de luz en tu cara</li>
+                            <li>Duración: 15-20 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Pon un filtro oscuro al inicio (usa CapCut o Instagram)</li>
+                            <li>Música de fondo: algo misterioso y suave</li>
+                            <li>Texto en pantalla: "En 5 días..." (letra blanca, grande)</li>
+                            <li>Al final: "CRISTO AMADO 🤍" (aparece brillando)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Comenta una 🤍 si quieres saber qué pasó"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 2 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">La Pregunta Viral</div>
+                    <div class="content-type">EDUCATIVO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Mirarás directo a la cámara con energía y sonriendo. Es como hablar con tu mejor amigo.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"¿Alguna vez te has sentido tan seco por dentro que parece que nada puede llenarte? Yo sí. Estuve en el desierto más horrible... pero encontré agua. En 4 días te cuento cómo. ¿Qué crees que pasó?"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Empieza serio cuando hablas del desierto. Luego sonríe grande cuando dices "pero encontré agua".
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Solo tú hablando a cámara. Puedes estar afuera con luz natural o en tu cuarto.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Ponte frente a una ventana con luz natural</li>
+                            <li>Mira directo al lente (el círculo de la cámara)</li>
+                            <li>Duración: 20-25 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Usa un zoom rápido cuando dices "agua" (efecto sorpresa)</li>
+                            <li>Pon emojis volando: 💧🏜️ cuando hablas del desierto</li>
+                            <li>Música: algo dinámico y pegajoso</li>
+                            <li>Subtítulos automáticos (actívalos en IG o TikTok)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Adivina en los comentarios: ¿Qué fue esa agua? 💧"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 3 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">Detrás de Cámaras</div>
+                    <div class="content-type">BACKSTAGE</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Grábate cantando un pedacito de la canción (solo 10-15 segundos). Puede ser en tu estudio, tu cuarto o donde ensayas.
+                        <br><br>
+                        <strong>QUÉ DECIR (antes de cantar):</strong>
+                        <br>"Les voy a cantar algo que escribí en mi momento más oscuro. Esto cambió mi vida. En 3 días lo escucharán completo."
+                        <br><br>
+                        <strong>QUÉ CANTAR:</strong> El coro: "Cristo amado, mi corazón roto tu amor sanó..." (solo esa parte, suave y con emoción)
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Canta con los ojos cerrados o mirando hacia arriba, como si estuvieras orando. Muestra emoción real.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Puedes grabar con el celular en un tripie o que alguien te grabe. Muestra el micrófono, los audífonos, tu libreta de letras.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Ambiente: tu espacio de grabación real (se ve profesional y cercano)</li>
+                            <li>Audio: usa tu voz en directo, sin editar mucho</li>
+                            <li>Duración: 25-30 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Filtro cálido y suave (como atardecer)</li>
+                            <li>Al final, pon la letra en pantalla mientras cantas</li>
+                            <li>Transición: cuando terminas de cantar, aparece el logo o nombre de la canción</li>
+                            <li>Sin música de fondo, solo tu voz</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Guarda este post. En 3 días lanzo CRISTO AMADO completa 🎵"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 4 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-title">La Historia Personal</div>
+                    <div class="content-type">INFORMATIVO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Caminarás en un lugar bonito (parque, calle tranquila, playa) y contarás tu testimonio mientras caminas.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"Hace un tiempo yo estaba rota. Sentía que ya nada tenía sentido. Pero Dios me alcanzó justo cuando más lo necesitaba. Y esta canción nació de ese momento. Mañana la escuchas completa."
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Habla con el corazón. No finjas. Si te sale una lágrima, está bien. Sé vulnerable y real.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Tú caminando mientras hablas. La cámara te sigue o camina contigo. Muestras lugares bonitos pero enfocados en ti.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Hora: atardecer o mañana temprano (luz bonita)</li>
+                            <li>Pide a alguien que te grabe caminando o usa un estabilizador</li>
+                            <li>Duración: 30-35 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Velocidad: graba normal pero en edición pon algunas partes en cámara lenta</li>
+                            <li>Música de fondo: instrumental suave y esperanzador</li>
+                            <li>Texto en pantalla: palabras clave mientras hablas ("rota", "Dios me alcanzó", "mañana")</li>
+                            <li>Filtro: natural, con colores cálidos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Si necesitas un milagro hoy, comenta AMÉN 🙏"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 5 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">5</div>
+                    <div class="day-title">¡LANZAMIENTO!</div>
+                    <div class="content-type">ENTRETENIMIENTO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Este es el día del lanzamiento. Grabarás con muchísima energía y emoción. Estarás súper feliz y emocionada.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"¡HOY ES EL DÍA! CRISTO AMADO ya está disponible en todas las plataformas. Esta canción cambió mi vida y sé que cambiará la tuya. Corre a escucharla AHORA."
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> ¡Grita! Salta. Sonríe gigante. Celebra como si fuera tu cumpleaños. Muestra tu alegría real.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Puedes grabarte desde diferentes ángulos siendo súper expresiva. Señala a la cámara. Haz gestos grandes con las manos.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Lugar: donde te sientas cómoda y feliz</li>
+                            <li>Ropa: algo que te haga sentir segura y bonita</li>
+                            <li>Duración: 15-20 segundos (corto y potente)</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Transiciones rápidas (cortes cada 2-3 segundos)</li>
+                            <li>Efectos de confeti, estrellas, brillos ✨</li>
+                            <li>Música: la intro de CRISTO AMADO (los primeros 15 segundos)</li>
+                            <li>Texto gigante en pantalla: "¡YA DISPONIBLE!"</li>
+                            <li>Pon el link de la canción en el reel</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Link en mi bio ⬆️ ¡Escúchala y cuéntame qué sentiste! 💜"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- POST-LANZAMIENTO -->
+        <div class="phase-section">
+            <div class="phase-title">🚀 FASE 2: POST-LANZAMIENTO (Días 6-10)</div>
+            
+            <!-- DÍA 6 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">6</div>
+                    <div class="day-title">Testimonios Reales</div>
+                    <div class="content-type">ENTRETENIMIENTO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Lee comentarios reales de personas que escucharon la canción (de Instagram, YouTube, Spotify). Comparte cómo te hacen sentir.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"Ayer lancé CRISTO AMADO y ustedes me dejaron sin palabras. Miren esto: [lee 2-3 comentarios bonitos]. Gracias por dejar que Dios use esta canción en sus vidas. ¿Ya la escuchaste?"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Con emoción genuina. Puedes ponerte la mano en el corazón o sonreír con lágrimas en los ojos.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Tu cara reaccionando mientras lees. Puedes mostrar capturas de pantalla de los comentarios también.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Graba en tu espacio favorito de tu casa</li>
+                            <li>Que se vea íntimo y personal</li>
+                            <li>Duración: 25-30 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Muestra los comentarios en pantalla mientras los lees</li>
+                            <li>Zoom a tu cara cuando reaccionas</li>
+                            <li>Música: versión instrumental suave de Cristo Amado</li>
+                            <li>Filtro cálido y acogedor</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Cuéntame: ¿Qué parte de la canción te tocó más? 💬"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 7 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">7</div>
+                    <div class="day-title">Tutorial de Significado</div>
+                    <div class="content-type">EDUCATIVO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Vas a explicar qué significa una parte específica de la letra. Como si le explicaras a un amigo.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"Mucha gente me pregunta qué significa 'Estaba seca, tan sedienta'. Les cuento: es cuando tu alma está vacía y nada te llena. Ni las fiestas, ni el dinero, ni el amor de personas. Solo Dios puede llenar ese vacío. ¿Te has sentido así?"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Como maestra explicando algo importante pero con cariño. Habla despacio y claro.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Tu cara hablando a cámara. Puedes usar tus manos para explicar mejor.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Siéntate o párate frente a un fondo limpio</li>
+                            <li>Luz natural de frente</li>
+                            <li>Duración: 30-35 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Pon la letra en pantalla cuando la mencionas</li>
+                            <li>Subtítulos para toda tu explicación</li>
+                            <li>Música de fondo muy bajita</li>
+                            <li>Al final: "Escucha CRISTO AMADO" con flecha hacia arriba</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"¿Quieres que explique otra parte de la canción? Comenta cuál 👇"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 8 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">8</div>
+                    <div class="day-title">Reto Viral de la Canción</div>
+                    <div class="content-type">ENTRETENIMIENTO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Vas a crear un reto simple: que la gente grabe un video diciendo una cosa por la que Dios los salvó.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"¡Hagamos un reto! Grábate diciendo: 'Dios me salvó de...' y completa la frase. Yo empiezo: Dios me salvó de la oscuridad y me dio un propósito nuevo. Tu turno. Usa la canción CRISTO AMADO y etiquétame."
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Con emoción y energía. Hazlo dinámico y divertido.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Tu cara primero explicando el reto. Luego tú haciendo el reto como ejemplo.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Primera parte: explicas el reto (10 segundos)</li>
+                            <li>Segunda parte: haces el reto (10 segundos)</li>
+                            <li>Graba en un lugar con buena luz</li>
+                            <li>Duración total: 20-25 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Música: CRISTO AMADO (la parte del coro)</li>
+                            <li>Transición rápida entre la explicación y tu ejemplo</li>
+                            <li>Texto en pantalla: "RETO CRISTO AMADO" bien grande</li>
+                            <li>Efecto de zoom cuando dices tu frase</li>
+                            <li>Hashtag: #RetoCristoAmado</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Hazlo y etiquétame. Quiero ver tu testimonio 🙌"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 9 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">9</div>
+                    <div class="day-title">El Proceso Creativo</div>
+                    <div class="content-type">BACKSTAGE</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Vas a mostrar clips rápidos de cómo hiciste la canción. Como un mini documental de 30 segundos.
+                        <br><br>
+                        <strong>QUÉ DECIR (voz en off sobre las imágenes):</strong>
+                        <br>"Así nació CRISTO AMADO: Noches sin dormir, lágrimas, café, oraciones... y mucho amor de Dios. Cada nota tiene un pedazo de mi corazón. ¿Ya la escuchaste completa?"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Nostálgico pero feliz. Como recordando algo hermoso que costó trabajo.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong> Mini clips de:
+                        <ul>
+                            <li>Tú escribiendo la letra en tu libreta</li>
+                            <li>Cantando en el micrófono</li>
+                            <li>Tu cara concentrada con audífonos</li>
+                            <li>Una taza de café</li>
+                            <li>Tú sonriendo al terminar</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Graba varios clips cortos (3-4 segundos cada uno)</li>
+                            <li>Pueden ser grabados en diferentes momentos y lugares</li>
+                            <li>No importa si no están perfectos, es backstage real</li>
+                            <li>Duración total armado: 25-30 segundos</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Estilo: video tipo "montaje" con clips rápidos</li>
+                            <li>Transiciones: cortes directos cada 3-4 segundos</li>
+                            <li>Filtro: blanco y negro o sepia para algunos clips, a color para el final</li>
+                            <li>Música: versión acústica o instrumental de CRISTO AMADO</li>
+                            <li>Texto al final: "Disponible en todas las plataformas 🎵"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"¿Quieres ver el video oficial? Lo lanzo mañana 🎬✨"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÍA 10 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">10</div>
+                    <div class="day-title">Video Oficial + Celebración</div>
+                    <div class="content-type">INFORMATIVO</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">🎬 Guión Super Fácil</div>
+                    <div class="section-content">
+                        <strong>LO QUE HARÁS:</strong> Vas a mostrar un pedacito del video oficial de CRISTO AMADO (10-15 segundos de la mejor parte) y celebrar con tu audiencia.
+                        <br><br>
+                        <strong>QUÉ DECIR:</strong>
+                        <br>"¡EL VIDEO OFICIAL DE CRISTO AMADO YA ESTÁ AQUÍ! Estos días han sido increíbles gracias a ustedes. Esta canción es para todos los que necesitan saber que Dios nunca los suelta. ¡Véanlo completo ahora!"
+                        <br><br>
+                        <strong>CÓMO EXPRESARLO:</strong> Con emoción total. Es tu celebración final. Sonríe, salta, celebra con toda tu energía.
+                        <br><br>
+                        <strong>QUÉ MOSTRAR:</strong>
+                        <ul>
+                            <li>Primero: tú súper emocionada anunciando (5 segundos)</li>
+                            <li>Luego: el clip mejor del video oficial (10-15 segundos)</li>
+                            <li>Final: tú agradeciendo (5 segundos)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📱 Grabación y Edición</div>
+                    <div class="tech-specs">
+                        <strong>📹 GRABACIÓN:</strong>
+                        <ul>
+                            <li>Graba tu parte con toda la energía posible</li>
+                            <li>Vístete bonita, con colores alegres</li>
+                            <li>Puedes tener confeti o globos cerca para celebrar</li>
+                            <li>Duración de tu parte: 10 segundos en total (inicio + final)</li>
+                        </ul>
+                        <strong>✂️ EDICIÓN:</strong>
+                        <ul>
+                            <li>Estructura: TÚ → VIDEO OFICIAL → TÚ</li>
+                            <li>Transiciones con efectos brillantes entre cada parte</li>
+                            <li>Música: audio directo del video oficial</li>
+                            <li>Efectos: confeti digital, luces, estrellas ✨🎉</li>
+                            <li>Texto grande: "VIDEO OFICIAL ↗️" con flecha al link</li>
+                            <li>Asegúrate de poner el link del video en YouTube</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📣 Llamado a la Acción</div>
+                    <div class="section-content">
+                        Al final del video di: <span class="highlight">"Link en mi bio ⬆️ Míralo, compártelo y cuéntame: ¿qué parte te hizo llorar? 💜🎵"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="phase-section" style="background: linear-gradient(135deg, #FF6EC7, #C77DFF); color: white; text-align: center;">
+                            ¡Que Dios bendiga este lanzamiento y que CRISTO AMADO<br>
+                llegue a cada corazón que necesite escucharla! 💜
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia HEROE - 10 Días Post-Lanzamiento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(231, 76, 60, 0.4);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.5);
+        }
+        
+        .day-card {
+            display: none;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #3498db;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .day-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        ];
+
+        // Generar botones de navegación
+        const navButtons = document.getElementById('navButtons');
+        dias.forEach((dia, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'nav-btn';
+            btn.textContent = `Día ${dia.dia}`;
+            btn.onclick = () => mostrarDia(index);
+            navButtons.appendChild(btn);
+        });
+
+        // Función para mostrar día específico
+        function mostrarDia(index) {
+            // Actualizar botones activos
+            const botones = document.querySelectorAll('.nav-btn');
+            botones.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // Generar contenido del día
+            const dia = dias[index];
+            const content = document.getElementById('content');
+            
+            content.innerHTML = `
+                <div class="day-card active">
+                    <div class="day-header">
+                        <div class="day-number">${dia.dia}</div>
+                        <div class="day-info">
+                            <h2>${dia.titulo}</h2>
+                            <span class="day-type">${dia.tipo}</span>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">🎬</span> GUIÓN COMPLETO</h3>
+                        
+                        <div class="guion-box">
+                            <h4>${dia.hook}</h4>
+                            <div class="guion-text">${dia.hookTexto}</div>
+                        </div>
+
+                        <div class="guion-box">
+                            <h4>${dia.desarrollo}</h4>
+                            <div class="guion-text">${dia.desarrolloTexto}</div>
+                        </div>
+
+                        <div class="guion-box">
+                            <h4>${dia.cta}</h4>
+                            <div class="guion-text">${dia.ctaTexto}</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">🎥</span> ESPECIFICACIONES TÉCNICAS</h3>
+                        <div class="tech-specs">
+                            ${dia.especificaciones.map(spec => `
+                                <div class="tech-item">
+                                    <strong>${spec.nombre}:</strong>
+                                    ${spec.valor}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <h4>💡 TIPS IMPORTANTES PARA GRABACIÓN:</h4>
+                        <ul>
+                            ${dia.tips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="cta-box">
+                        🎯 RECUERDA: Este contenido debe verse natural y auténtico. Graba varias tomas hasta que te sientas cómodo. ¡Tu energía es lo que hará viral el contenido!
+                    </div>
+                </div>
+            `;
+        }
+
+        // Mostrar primer día por defecto
+        mostrarDia(0);
+    </script>
+</body>
+</html>
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+        }
+        
+        .day-number {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5);
+        }
+        
+        .day-info h2 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        .day-type {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .section {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .section h3 {
+            color: #3498db;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            font-size: 1.2em;
+        }
+        
+        .guion-box {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .guion-box h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .guion-text {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.8;
+            font-size: 1.05em;
+            border-left: 3px solid #3498db;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .tech-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #3498db;
+        }
+        
+        .tech-item strong {
+            color: #3498db;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .tips-box {
+            background: rgba(52, 152, 219, 0.15);
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .tips-box h4 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .day-card {
+                padding: 20px;
+            }
+            
+            .day-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎵 HEROE 🎵</h1>
+        <p>Estrategia Post-Lanzamiento | Yash & Halel</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">10 Días de Contenido Viral</p>
+    </div>
+    
+    <div class="nav-buttons" id="navButtons"></div>
+    
+    <div id="content"></div>
+
+    <script>
+        const dias = [
+            {
+                dia: 1,
+                titulo: "El Significado Detrás de HEROE",
+                tipo: "EDUCATIVO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces en cámara con energía, señalando directo a la lente y dices: '¿Sabías que HEROE casi no se llamaba así?'",
+                desarrollo: "📱 DESARROLLO (4-25 segundos)",
+                desarrolloTexto: "Explicas con emoción: 'Cuando estábamos creando esta canción, queríamos hablar de cómo Dios nos rescata como un superhéroe. Pero no es un héroe de película... es EL HÉROE que atravesó cielos y mares para salvarnos. La combinación de inglés y español representa que su amor no tiene idiomas, no tiene fronteras. Es UNIVERSAL.'",
+                cta: "🎯 CIERRE (26-30 segundos)",
+                ctaTexto: "Miras fijo a cámara y dices: 'Dale play a HEROE y cuéntame: ¿cuándo ha sido Dios TU héroe? Te leo en comentarios 👇'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Primer plano (tu rostro y hombros)"},
+                    {nombre: "Iluminación", valor: "Luz natural o ring light de frente"},
+                    {nombre: "Locación", valor: "Fondo limpio (pared blanca o espacio sencillo)"},
+                    {nombre: "Edición", valor: "Texto animado: '¿Sabías que HEROE...' en los primeros segundos. Usar subtítulos dinámicos durante todo el video"},
+                    {nombre: "Audio", valor: "Usar fragmento instrumental de HEROE de fondo (bajo volumen)"},
+                    {nombre: "Duración", valor: "30-40 segundos máximo"}
+                ],
+                tips: [
+                    "Habla con energía pero pausado, como contando un secreto emocionante",
+                    "Sonríe genuinamente, que se sienta tu pasión",
+                    "Mantén contacto visual con la cámara todo el tiempo"
+                ]
+            },
+            {
+                dia: 2,
+                titulo: "Challenge: Canta Tu Verso Favorito",
+                tipo: "ENTRETENIMIENTO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces con audífonos puestos, haces una cara de 'wow' y dices: 'Este verso me pone la piel de gallina cada vez'",
+                desarrollo: "📱 DESARROLLO (4-35 segundos)",
+                desarrolloTexto: "Empiezas a cantar a capela (sin música) tu parte favorita de HEROE, puede ser: 'Cayendo al abismo a lo más profundo, tu me limpiaste de lo inmundo'. Lo cantas con sentimiento real, cerrando los ojos en momentos clave. A mitad del verso, haces un corte y dices: 'Ahora TÚ. Grábate cantando tu parte favorita de HEROE y etiquétame con #MiHeroeChallenge'",
+                cta: "🎯 CIERRE (36-40 segundos)",
+                ctaTexto: "Señalas a la cámara y dices: 'Los mejores los voy a repostear. ¿Estás listo? Escucha HEROE completo y elige tu verso 🔥'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Plano medio (cintura para arriba)"},
+                    {nombre: "Iluminación", valor: "Ambiente cálido, puede ser luz natural"},
+                    {nombre: "Locación", valor: "Cualquier lugar cómodo (tu cuarto, sala, estudio)"},
+                    {nombre: "Edición", valor: "Agregar letra en pantalla del verso que cantas. Efecto de zoom cuando menciones el challenge. Al final, poner sticker 'ESPERANDO TU VIDEO'"},
+                    {nombre: "Audio", valor: "Tu voz en primer plano. Al final agregar fragmento de HEROE"},
+                    {nombre: "Duración", valor: "35-45 segundos"}
+                ],
+                tips: [
+                    "Canta con emoción real, no finjas",
+                    "Mueve tus manos naturalmente al cantar",
+                    "Mira a la cámara cuando des la instrucción del challenge"
+                ]
+            },
+            {
+                dia: 3,
+                titulo: "Testimonios: Dios, Mi Héroe Personal",
+                tipo: "INFORMATIVO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces serio, casi susurrando: 'Hubo un momento donde pensé que no había salida...'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Compartes brevemente un testimonio personal o de alguien cercano: 'Yo estaba en mi punto más bajo [pausa dramática]. Pero Dios apareció como el héroe que no esperaba. Me levantó, me dio una nueva oportunidad, y ahora estoy aquí compartiéndolo con ustedes a través de esta canción.' [Cambias tu expresión a esperanzada]. 'HEROE nació de esa experiencia. De saber que cuando TODO falla, ÉL nunca falla.'",
+                cta: "🎯 CIERRE (31-35 segundos)",
+                ctaTexto: "Miras directo a cámara con una sonrisa leve: 'Si Dios ha sido tu héroe también, escribe AMÉN en comentarios. Y escucha HEROE, porque esta canción es para TI 🙏'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Primer plano (captura emociones faciales)"},
+                    {nombre: "Iluminación", valor: "Luz suave, puede ser natural desde ventana"},
+                    {nombre: "Locación", valor: "Lugar íntimo (tu cuarto o espacio personal)"},
+                    {nombre: "Edición", valor: "Color grading más cálido/emotivo. Agregar texto en pantalla: 'Testimonio Real'. Música suave de fondo al inicio, luego entra HEROE gradualmente"},
+                    {nombre: "Audio", valor: "Tu voz clara. Música ambiental de HEROE a bajo volumen"},
+                    {nombre: "Duración", valor: "30-40 segundos"}
+                ],
+                tips: [
+                    "Sé genuino, no actúes",
+                    "Habla como si le contaras a tu mejor amigo",
+                    "Pausa en los momentos importantes para generar impacto"
+                ]
+            },
+            {
+                dia: 4,
+                titulo: "Detrás de Cámaras: La Grabación",
+                tipo: "BACKSTAGE",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Aparecen clips rápidos del estudio (micrófonos, audífonos, pantallas) y dices en voice over: 'Esto es lo que NO vieron de HEROE...'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Muestras clips cortos del proceso: tú en el estudio con audífonos, grabando una toma, riendo con el productor, escuchando playbacks. En voice over vas diciendo: 'Grabamos esta canción más de 20 veces [risas]. Hubo momentos frustrantes, pero cada segundo valió la pena porque queríamos que SINTIERAN el mensaje. Que supieran que Dios es real y su amor es REAL.'",
+                cta: "🎯 CIERRE (31-35 segundos)",
+                ctaTexto: "Regresas a cámara frontal y dices: '¿Quieres ver el video completo del detrás de cámaras? Comenta BACKSTAGE y lo subo. Mientras tanto, escucha HEROE y dime qué te parece 🎤'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Variado: clips del estudio + primer plano tuyo"},
+                    {nombre: "Iluminación", valor: "Natural del estudio (ambiente de trabajo)"},
+                    {nombre: "Locación", valor: "Estudio de grabación"},
+                    {nombre: "Edición", valor: "Cortes rápidos entre clips. Agregar stickers de '🔥 SESIÓN DE GRABACIÓN'. Texto animado con frases clave. Transiciones dinámicas"},
+                    {nombre: "Audio", valor: "Tu voice over claro. Mezcla con HEROE instrumental de fondo"},
+                    {nombre: "Duración", valor: "30-40 segundos"}
+                ],
+                tips: [
+                    "Los clips deben ser de 2-3 segundos máximo cada uno",
+                    "Muestra momentos genuinos (errores, risas, concentración)",
+                    "El voice over debe sonar natural, como contando anécdotas"
+                ]
+            },
+            {
+                dia: 5,
+                titulo: "Lyric Video: Momento Épico",
+                tipo: "ENTRETENIMIENTO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Pantalla negra, aparece el texto animado: '🔥 EL MOMENTO MÁS ÉPICO DE HEROE 🔥' con efecto de fuego",
+                desarrollo: "📱 DESARROLLO (4-35 segundos)",
+                desarrolloTexto: "Empieza a sonar la parte más potente de HEROE: 'Hero, love is your superpower, You are my shelter, my rock and my tower'. Las letras aparecen en pantalla con animaciones explosivas (estilo karaoke pero moderno). TÚ apareces en un recuadro pequeño abajo cantando ese fragmento con toda tu energía, haciendo gestos épicos con las manos.",
+                cta: "🎯 CIERRE (36-40 segundos)",
+                ctaTexto: "La música baja, te acercas a cámara y dices: '¿Sentiste esa energía? Eso es solo UN momento de HEROE. Escucha la canción completa AHORA 👆 Link en mi bio'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Texto en pantalla grande + tú en recuadro inferior"},
+                    {nombre: "Iluminación", valor: "Dramática, puede usar luces de colores (rojo/azul)"},
+                    {nombre: "Locación", valor: "Fondo oscuro o con luces de neón"},
+                    {nombre: "Edición", valor: "Letras animadas estilo kinetic typography. Efectos de partículas y brillo. Transiciones con impacto visual. Recuadro tuyo con borde brillante"},
+                    {nombre: "Audio", valor: "HEROE en alta calidad, específicamente ese fragmento"},
+                    {nombre: "Duración", valor: "35-45 segundos"}
+                ],
+                tips: [
+                    "Canta con máxima energía, como en concierto",
+                    "Usa gestos amplios y expresivos",
+                    "Sincroniza perfectamente tus labios con la letra"
+                ]
+            },
+            {
+                dia: 6,
+                titulo: "Reacciones: La Gente Opina",
+                tipo: "INFORMATIVO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces emocionado y dices: 'No van a creer lo que me escribieron después de escuchar HEROE...'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Muestras capturas de pantalla de comentarios reales (de Instagram, TikTok, WhatsApp): 'Miren esto: [lees un comentario emotivo]. O este otro: [lees uno más]. La gente está conectando con el mensaje de una forma increíble.' Vas mostrando 3-4 capturas rápido mientras las comentas con emoción genuina. 'Esto es exactamente lo que queríamos: que SINTIERAN que Dios es su héroe personal'",
+                cta: "🎯 CIERRE (31-35 segundos)",
+                ctaTexto: "Sonríes y dices: 'Tu turno. Escucha HEROE y cuéntame: ¿qué frase te llegó más al corazón? Déjamelo en comentarios, los leo TODOS 💙'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Primer plano + inserciones de capturas"},
+                    {nombre: "Iluminación", valor: "Buena iluminación frontal (ring light)"},
+                    {nombre: "Locación", valor: "Fondo neutral"},
+                    {nombre: "Edición", valor: "Agregar las capturas de comentarios en pantalla con efecto de 'pop in'. Resaltar frases clave con highlights. Agregar emojis animados"},
+                    {nombre: "Audio", valor: "Tu voz principal. HEROE instrumental suave de fondo"},
+                    {nombre: "Duración", valor: "30-40 segundos"}
+                ],
+                tips: [
+                    "Lee los comentarios con emoción real, como si te sorprendieran",
+                    "Señala las capturas cuando aparezcan en pantalla",
+                    "Muestra gratitud genuina en tu expresión"
+                ]
+            },
+            {
+                dia: 7,
+                titulo: "Tutorial: Cómo Cantar el Coro",
+                tipo: "EDUCATIVO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces y dices: 'Te voy a enseñar a cantar el coro de HEROE en 30 segundos. ¿Listo?'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Cantas el coro lentamente, dividiendo en partes: 'Primero: HÉ-RO-E [lo cantas]. Ahora conmigo: HÉ-RO-E [pausas para que repitan]. Perfecto. Ahora la segunda parte: E-RES MI HÉ-RO-E [lo cantas]. Tu turno: E-RES MI HÉ-RO-E.' [Haces gestos con las manos indicando el ritmo]. 'Ahora todo junto más rápido: Héroe, eres mi héroe' [lo cantas completo con flow].",
+                cta: "🎯 CIERRE (31-35 segundos)",
+                ctaTexto: "Sonríes y dices: '¿Lo lograste? Etiquétame cantándolo y te reposteo. Escucha HEROE completo para aprenderte toda la canción 🎵'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Plano medio (para ver gestos de manos)"},
+                    {nombre: "Iluminación", valor: "Clara y frontal"},
+                    {nombre: "Locación", valor: "Fondo limpio y simple"},
+                    {nombre: "Edición", valor: "Agregar las letras en pantalla mientras las enseñas. Usar colores diferentes para cada sección. Slow motion opcional en momentos clave. Al final agregar '¿LO LOGRASTE?'"},
+                    {nombre: "Audio", valor: "Tu voz a capela clara. Opcional: agregar beat de HEROE suave"},
+                    {nombre: "Duración", valor: "30-40 segundos"}
+                ],
+                tips: [
+                    "Habla como maestro paciente y amigable",
+                    "Usa tus manos para marcar el ritmo",
+                    "Sonríe y anima durante todo el video"
+                ]
+            },
+            {
+                dia: 8,
+                titulo: "Trend: Antes vs Después de Dios",
+                tipo: "ENTRETENIMIENTO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces con ropa sencilla, cara seria, ambiente oscuro. Texto en pantalla: 'YO SIN DIOS'",
+                desarrollo: "📱 DESARROLLO (4-20 segundos)",
+                desarrolloTexto: "Estás en blanco y negro, caminando sin rumbo, cabeza baja. Actúas perdido y triste. CORTE. Empieza a sonar HEROE (la parte del coro). Cambio instantáneo: ahora estás con ropa más fresh, ambiente iluminado, sonriendo. Texto: 'YO CON DIOS (MI HÉROE)'. Bailas o te mueves con energía, señalas al cielo, haces gestos de victoria.",
+                cta: "🎯 CIERRE (21-30 segundos)",
+                ctaTexto: "Texto en pantalla: '¿TÚ CÓMO CAMBIASTE? 💭'. Apareces y dices: 'Haz tu versión y etiquétame con #MiHeroeTransformacion. Escucha HEROE y comparte tu historia'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Plano completo (cuerpo entero) para ambas partes"},
+                    {nombre: "Iluminación", valor: "Primera parte: baja/oscura. Segunda parte: brillante"},
+                    {nombre: "Locación", valor: "Mismo lugar pero cambia iluminación y tu actitud"},
+                    {nombre: "Edición", valor: "Primera parte en blanco y negro. Segunda parte a color saturado. Transición con efecto de flash cuando entra la música. Textos animados grandes. Usar efectos de trending TikTok"},
+                    {nombre: "Audio", valor: "Silencio/música triste al inicio. Luego HEROE a volumen alto"},
+                    {nombre: "Duración", valor: "25-35 segundos"}
+                ],
+                tips: [
+                    "Actúa con convicción en ambas partes",
+                    "El contraste debe ser DRAMÁTICO",
+                    "Usa lenguaje corporal opuesto en cada parte"
+                ]
+            },
+            {
+                dia: 9,
+                titulo: "Historia: Por Qué Escribí HEROE",
+                tipo: "BACKSTAGE",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Apareces íntimo, casi en confesión, y dices: 'Nunca había contado por qué escribí HEROE...'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Hablas desde el corazón: 'Esta canción nació en un momento donde necesitaba recordar quién realmente me salva. No un héroe de ficción, sino uno REAL que dio su vida por mí. Quería que cada persona que la escuche sienta que no está solo, que hay alguien que atravesó cielos y mares para rescatarlo. [Pausa emotiva]. HEROE es un recordatorio de que el amor de Dios es nuestro verdadero superpoder.'",
+                cta: "🎯 CIERRE (31-35 segundos)",
+                ctaTexto: "Miras fijo a cámara: 'Si esta canción toca tu corazón, compártela con alguien que necesite escuchar este mensaje hoy. Dale play a HEROE 🙏💙'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Primer plano muy cerrado (rostro completo)"},
+                    {nombre: "Iluminación", valor: "Suave y natural, ambiente íntimo"},
+                    {nombre: "Locación", valor: "Lugar personal y tranquilo"},
+                    {nombre: "Edición", valor: "Color grading cálido. Mínima edición para mantener autenticidad. Agregar leve blur en los bordes. Subtítulos en frases clave"},
+                    {nombre: "Audio", valor: "Tu voz clara y emotiva. Al final entra HEROE instrumental muy suave"},
+                    {nombre: "Duración", valor: "30-40 segundos"}
+                ],
+                tips: [
+                    "Habla despacio y con pausas",
+                    "Sé completamente auténtico, no actúes",
+                    "Puedes mostrar vulnerabilidad, eso conecta"
+                ]
+            },
+            {
+                dia: 10,
+                titulo: "Invitación: Únete al Movimiento HEROE",
+                tipo: "INFORMATIVO",
+                hook: "🎬 INICIO (0-3 segundos)",
+                hookTexto: "Pantalla dividida mostrando clips de todos los días anteriores rápido. Texto: '10 DÍAS DE HEROE 🔥'",
+                desarrollo: "📱 DESARROLLO (4-30 segundos)",
+                desarrolloTexto: "Apareces tú al centro y dices: 'Durante 10 días compartimos el mensaje de HEROE con ustedes. Vimos testimonios, retos, emociones... PERO esto no termina aquí. Este es un MOVIMIENTO. Un recordatorio de que Dios es nuestro héroe cada día.' [Muestras clips de personas haciendo los challenges, comentarios, etc.]. 'Miles de personas ya están escuchando HEROE. Ahora te toca a TI ser parte de esta familia.'",
+                cta: "🎯 CIERRE (31-40 segundos)",
+                ctaTexto: "Abres los brazos y dices: 'Comparte HEROE con alguien HOY. Etiquétame en tus historias. Cuenta tu testimonio. Juntos llevamos este mensaje más lejos. ¿Estás conmigo? Comenta HEROE si estás dentro de este movimiento 🔥💙 Link en bio para escuchar'",
+                especificaciones: [
+                    {nombre: "Plano", valor: "Primer plano + inserciones de contenido UGC"},
+                    {nombre: "Iluminación", valor: "Energética y brillante"},
+                    {nombre: "Locación", valor: "Fondo dinámico o con elementos urbanos"},
+                    {nombre: "Edición", valor: "Collage rápido de los 9 días anteriores al inicio. Efectos de transición energéticos. Agregar contador '10 DÍAS'. Stickers de fuego y corazones. Texto animado: 'ÚNETE AL MOVIMIENTO'"},
+                    {nombre: "Audio", valor: "Música de HEROE energética. Tu voz con emoción alta"},
+                    {nombre: "Duración", valor: "35-45 segundos"}
+                ],
+                tips: [
+                    "Habla con máxima energía y convicción",
+                    "Haz que se sienta como un cierre épico",
+                    "Muestra gratitud y entusiasmo genuino",
+                    "Invita a la acción de forma directa pero amigable"
+                ]
+            }
