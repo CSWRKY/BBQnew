@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Guiones de Storytelling - Ecosistema Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 50%, #4a2c6b 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #ffd700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            color: #1a0033;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            color: rgba(255, 215, 0, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            color: #1a0033;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .category-btn:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .category-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Script Cards */
+        .scripts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .script-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .script-card:hover {
+            border-color: #ffd700;
+        }
+
+        .script-header {
+            padding: 1.5rem;
+            cursor: pointer;
+        }
+
+        .script-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .script-title-content {
+            flex: 1;
+        }
+
+        .title-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+
+        .script-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffd700;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hook-text {
+            color: rgba(255, 215, 0, 0.9);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .hook-label {
+            color: #ffa500;
+            font-weight: bold;
+        }
+
+        .expand-btn {
+            color: #ffd700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.75rem;
+            transition: color 0.3s;
+        }
+
+        .expand-btn:hover {
+            color: #ffa500;
+        }
+
+        /* Expanded Content */
+        .script-content {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding-top: 1.5rem;
+            display: none;
+        }
+
+        .script-content.active {
+            display: block;
+        }
+
+        .content-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-text {
+            color: rgba(255, 215, 0, 0.9);
+            line-height: 1.6;
+        }
+
+        .lesson-box {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-text {
+            color: #ffd700;
+            font-weight: 500;
+        }
+
+        .cta-text {
+            color: rgba(255, 215, 0, 0.8);
+            font-style: italic;
+        }
+
+        .visual-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 0.75rem;
+        }
+
+        .visual-text {
+            color: rgba(255, 215, 0, 0.7);
+            font-size: 0.875rem;
+        }
+
+        /* Footer Tips */
+        .tips-section {
+            margin-top: 3rem;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .tips-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-item {
+            color: rgba(255, 215, 0, 0.9);
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: #ffa500;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-text {
+            font-size: 0.875rem;
+        }
+
+        /* Strategic Note */
+        .strategic-note {
+            margin-top: 2rem;
+            text-align: center;
+            background: #2d1b4e;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .strategic-text {
+            color: rgba(255, 215, 0, 0.8);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .script-title {
+                font-size: 1.25rem;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">
+                <span>✨</span>
+                <span>ECOSISTEMA COMPLETO</span>
+            </div>
+            <h1 class="main-title">10 Guiones de Storytelling</h1>
+            <p class="subtitle">Comunicación con propósito: fe que se comunica, se viste y se escucha</p>
+            <p class="description">Listos para grabar en una tarde. Conectan emocionalmente, posicionan autoridad y convierten sin vender agresivamente.</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterScripts('all')">
+                <span>🎬</span> Todos los guiones
+            </button>
+            <button class="category-btn" onclick="filterScripts('marca-personal')">
+                <span>✨</span> Marca Personal
+            </button>
+            <button class="category-btn" onclick="filterScripts('radio')">
+                <span>📻</span> Radio
+            </button>
+            <button class="category-btn" onclick="filterScripts('agencia')">
+                <span>🎯</span> Agencia
+            </button>
+        </div>
+
+        <!-- Scripts Container -->
+        <div class="scripts-container" id="scriptsContainer"></div>
+
+        <!-- Footer Tips -->
+        <div class="tips-section">
+            <h3 class="tips-title">✅ Tips para grabar en una tarde</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <p class="tip-title">📋 Preparación</p>
+                    <p class="tip-text">Lee todos los guiones antes de grabar. Ajusta palabras que no te suenen naturales a tu forma de hablar.</p>
+                </div>
+                <div class="tip-item">
+                    <p class="tip-title">🎬 Grabación</p>
+                    <p class="tip-text">Graba 2-3 tomas de cada uno. No busques perfección, busca autenticidad. Tus "errores" pueden ser tu mejor contenido.</p>
+                </div>
+                <div class="tip-item">
+                    <p class="tip-title"♻️ Reutilización</p>
+                    <p class="tip-text">Estos guiones funcionan para Reels, Shorts y TikTok. Mismo video, múltiples plataformas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Note -->
+        <div class="strategic-note">
+            <p class="strategic-text">
+                <span style="color: #ffd700; font-weight: bold;">Estrategia:</span> Estos guiones reactivan tu marca personal (eje central), 
+                dan contenido reutilizable para la radio y posicionan indirectamente tu agencia desde la autoridad y el valor, 
+                <span style="color: #ffa500; font-weight: bold;">sin vender de forma agresiva.</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const scripts = [
+            {
+                id: 1,
+                title: "El error del video perfecto",
+                category: "marca-personal",
+                icon: "✨",
+                hook: "Borré un video 12 veces antes de publicarlo... y sabes qué pasó cuando finalmente lo subí 'imperfecto'?",
+                story: "Estaba grabando un reel sobre comunicación auténtica. Tomé 1, error. Toma 2, me trabé. Toma 3, no me gustó mi cara. En la toma 12, mi gato cruzó el fondo y me reí a mitad de la frase. Lo subí así, con imperfecciones. Fue el video con más comentarios de ese mes. La gente decía: 'por fin alguien real'.",
+                lesson: "La perfección no conecta. La autenticidad sí. En un mundo lleno de filtros, lo genuino se vuelve extraordinario.",
+                cta: "Si alguna vez has borrado algo por miedo a no ser 'perfecto', quédate por aquí.",
+                visuals: "Selfie casual, sin producción excesiva, ambiente natural de casa"
+            },
+            {
+                id: 2,
+                title: "La radio que nadie escuchaba",
+                category: "radio",
+                icon: "📻",
+                hook: "Lancé una radio cristiana y los primeros 3 meses... CERO oyentes. Literal. Cero.",
+                story: "Cada día ponía música, preparaba reflexiones, ajustaba la transmisión. Y nadie entraba. Me preguntaba: ¿para qué sirve una radio sin audiencia? Pero seguí. Un día recibí un mensaje: 'Encontré tu radio de casualidad a las 2am. Estaba en un momento oscuro y esa canción me recordó que no estoy solo'. Resultó que no tenía cero oyentes. Tenía los oyentes exactos que necesitaban estar ahí.",
+                lesson: "No se trata de alcance masivo desde el día uno. Se trata de impacto real en las personas correctas.",
+                cta: "Si crees en proyectos que transforman aunque empiecen pequeños, esto es para ti.",
+                visuals: "Detrás de cámaras del setup de radio, mood íntimo"
+            },
+            {
+                id: 3,
+                title: "El cliente que casi rechazo",
+                category: "agencia",
+                icon: "🎯",
+                hook: "Me llegó un cliente pidiendo 'algo bonito'. Casi le digo que no...",
+                story: "Un emprendedor me contactó: 'necesito un video bonito para Instagram'. Sin brief, sin estrategia. Mi primer instinto fue rechazarlo. Pero le hice una pregunta: ¿qué quieres que la gente SIENTA cuando lo vea? Pasamos de 'algo bonito' a una historia que conectó con su audiencia de forma real. El video no solo fue bonito. Fue efectivo.",
+                lesson: "Lo visual atrae. Pero lo que realmente convierte es la emoción que provocas. La comunicación efectiva siempre empieza con una pregunta correcta.",
+                cta: "Así es como entendemos la comunicación: con propósito.",
+                visuals: "Frente a computadora, mostrando proceso creativo"
+            },
+            {
+                id: 4,
+                title: "La Biblia y mi crisis creativa",
+                category: "marca-personal",
+                icon: "✨",
+                hook: "Estaba en bloqueo creativo total. Abrí la Biblia buscando 'inspiración espiritual'... y encontré el mejor consejo de branding.",
+                story: "Leí sobre cómo Jesús enseñaba: con parábolas, historias cotidianas, ejemplos que la gente entendía. No usaba lenguaje complicado. Hablaba de semillas, pescadores, bodas. Y pensé: esto ES storytelling en su forma más pura. Conectar lo profundo con lo simple.",
+                lesson: "Las mejores ideas no vienen solo de cursos de marketing. A veces vienen de lugares inesperados cuando estás abierto a aprender.",
+                cta: "Si mezclas fe y creatividad, vamos a conectar.",
+                visuals: "Biblia abierta + cuaderno de ideas, ambiente cálido"
+            },
+            {
+                id: 5,
+                title: "8 horas vs. todo el día",
+                category: "marca-personal",
+                icon: "✨",
+                hook: "Tengo solo 8 horas A LA SEMANA para crear contenido. ¿Cómo lo hago?",
+                story: "No puedo grabar todos los días. No tengo un equipo de edición. Grabo en mi casa con lo que tengo. Al principio me frustraba viendo a creators que suben 3 videos diarios. Hasta que entendí algo: no necesito cantidad. Necesito intención. Ahora grabo todo un día, planeo con anticipación, y cada video cuenta.",
+                lesson: "No necesitas más tiempo. Necesitas más estrategia. Trabaja con lo que tienes, pero hazlo con propósito.",
+                cta: "Si tú también creas con recursos limitados pero grandes ideas, esto es para ti.",
+                visuals: "Setup casero de grabación, luces básicas, ambiente realista"
+            },
+            {
+                id: 6,
+                title: "La pregunta que cambió todo",
+                category: "agencia",
+                icon: "🎯",
+                hook: "Un cliente me preguntó: '¿Por qué debería invertir en video si ya tengo fotos?' Le mostré esto...",
+                story: "Le puse dos publicaciones lado a lado. Una con foto estática, otra con video de 15 segundos contando una mini historia. Misma empresa, mismo producto. El video tuvo 8 veces más engagement. No porque el video fuera 'mejor'. Sino porque el cerebro humano está programado para conectar con movimiento y narrativa.",
+                lesson: "No se trata de estar en todas partes. Se trata de estar donde la atención realmente sucede.",
+                cta: "Esto es comunicación estratégica. Y funciona.",
+                visuals: "Comparación visual en pantalla, gestos explicativos"
+            },
+            {
+                id: 7,
+                title: "Música que sana sin predicar",
+                category: "radio",
+                icon: "📻",
+                hook: "Alguien me dijo: 'Tu radio es cristiana pero no se siente... religiosa'. Y lo tomé como el mejor cumplido.",
+                story: "Queremos que personas que nunca entrarían a una iglesia, encuentren esperanza en una canción. Que alguien que está cansado de religión, se encuentre con relación. Nuestra música habla de fe real, no de perfección. De luchas, no solo de victorias. Y eso conecta.",
+                lesson: "No tienes que gritar tu mensaje. A veces la mejor forma de comunicar verdad es siendo auténticamente humano.",
+                cta: "Si crees en una fe que se comunica diferente, conectemos.",
+                visuals: "Visuales de radio, playlist en pantalla, ambiente juvenil"
+            },
+            {
+                id: 8,
+                title: "El día que entendí mi marca",
+                category: "marca-personal",
+                icon: "✨",
+                hook: "Me pasé meses tratando de 'definir mi marca personal'... hasta que dejé de intentarlo.",
+                story: "Leía sobre arquetipos, paletas de colores, bios perfectas. Nada sonaba como yo. Un día simplemente hablé a cámara como hablo con mis amigos: mezclando fe, creatividad y vida real. Sin fórmulas. Y de repente todo hizo clic. Mi marca no era algo que tenía que crear. Ya existía. Solo necesitaba dejarla salir.",
+                lesson: "Tu marca personal no es lo que proyectas. Es lo que ya eres cuando dejas de actuar.",
+                cta: "Si esto resuena contigo, aquí vas a encontrar más de esto.",
+                visuals: "Directo a cámara, expresión natural, sin guion rígido"
+            },
+            {
+                id: 9,
+                title: "Comunicación que viste",
+                category: "marca-personal",
+                icon: "✨",
+                hook: "Mi abuela me enseñó algo sobre comunicación... cosiendo un vestido.",
+                story: "Me decía: 'Cada puntada tiene que tener propósito. Si no, se deshace'. Estaba haciendo un vestido para mí y me mostró cómo cada costura invisible hacía que todo se sostuviera. Años después, creando contenido, entendí: la comunicación es igual. Lo que no se ve (estrategia, intención, estructura) es lo que hace que el mensaje se sostenga.",
+                lesson: "La buena comunicación no grita. Se sostiene. Y cuando está bien hecha, nadie ve el esfuerzo, solo el resultado.",
+                cta: "Así entendemos la comunicación: con propósito.",
+                visuals: "Metáfora visual con tela/costura o proceso creativo"
+            },
+            {
+                id: 10,
+                title: "Fe que se escucha",
+                category: "radio",
+                icon: "📻",
+                hook: "¿Cómo suena la fe? No como tú crees...",
+                story: "Muchos piensan que la fe suena a coros de iglesia o sermones formales. Pero la fe real suena a alguien cantando mientras lava platos. A una canción que te hace llorar en el carro porque llegó en el momento exacto. A letras que hablan tu lenguaje. Nuestra radio existe para eso: para que la fe se escuche como vida, no como religión.",
+                lesson: "La fe no necesita sonar 'espiritual' para ser poderosa. Necesita sonar verdadera.",
+                cta: "Si crees en una fe que se vive, se comunica y se escucha diferente, quédate.",
+                visuals: "Escenas cotidianas + música de fondo, ambiente cálido"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderScripts() {
+            const container = document.getElementById('scriptsContainer');
+            const filtered = currentFilter === 'all' 
+                ? scripts 
+                : scripts.filter(s => s.category === currentFilter);
+
+            container.innerHTML = filtered.map(script => `
+                <div class="script-card" data-category="${script.category}">
+                    <div class="script-header" onclick="toggleScript(${script.id})">
+                        <div class="script-title-row">
+                            <div class="script-title-content">
+                                <div class="title-with-icon">
+                                    <span class="icon">${script.icon}</span>
+                                    <h3 class="script-title">${script.title}</h3>
+                                </div>
+                                <div class="duration">
+                                    <span>▶</span>
+                                    <span>30-60 segundos</span>
+                                </div>
+                                <p class="hook-text">
+                                    <span class="hook-label">HOOK:</span> "${script.hook}"
+                                </p>
+                            </div>
+                            <button class="expand-btn" id="btn-${script.id}">▼</button>
+                        </div>
+                    </div>
+                    <div class="script-content" id="content-${script.id}">
+                        <div class="content-section">
+                            <h4 class="section-title">❤️ DESARROLLO DEL STORYTELLING</h4>
+                            <p class="section-text">${script.story}</p>
+                        </div>
+                        <div class="lesson-box">
+                            <h4 class="section-title">💡 MENSAJE CLAVE / APRENDIZAJE</h4>
+                            <p class="lesson-text">${script.lesson}</p>
+                        </div>
+                        <div class="content-section">
+                            <h4 class="section-title" style="color: #ffa500;">📤 CTA SUAVE</h4>
+                            <p class="cta-text">"${script.cta}"</p>
+                        </div>
+                        <div class="visual-box">
+                            <h4 class="section-title" style="font-size: 0.875rem;">🎥 SUGERENCIA VISUAL</h4>
+                            <p class="visual-text">${script.visuals}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleScript(id) {
+            const content = document.getElementById(`content-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                btn.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                btn.textContent = '▲';
+            }
+        }
+
+        function filterScripts(category) {
+            currentFilter = category;
+            
+            // Update active button
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.category-btn').classList.add('active');
+            
+            renderScripts();
+        }
+
+        // Initial render
+        renderScripts();
+    </script>
+</body>
+</html>
